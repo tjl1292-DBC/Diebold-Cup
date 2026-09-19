@@ -86,8 +86,8 @@ export const TOOLS: Anthropic.Tool[] = [
       type: "object",
       properties: {
         metric: { type: "string", enum: ["share_of_points", "career_points", "singles_average", "appearances", "low_rounds", "partnerships"] },
-        club_id: { type: ["string", "null"], enum: ["field-club", "fox-chapel", "oakmont", "longue-vue", null], description: "Restrict to one club, or null" },
-        era: { type: ["string", "null"], enum: ["middle", "modern", null], description: "Restrict to one era, or null for all" },
+        club_id: { type: "string", enum: ["all", "field-club", "fox-chapel", "oakmont", "longue-vue"], description: "Restrict to one club, or 'all'" },
+        era: { type: "string", enum: ["all", "middle", "modern"], description: "Restrict to one era (middle = 1995-2006, modern = 2007 on), or 'all'" },
         min_matches: { type: "integer", description: "Minimum matches to qualify (default 12; use 4 for a single season question)" },
         limit: { type: "integer", description: "Rows to return, max 50" },
       },
@@ -224,8 +224,8 @@ export async function runTool(name: string, input: unknown): Promise<ToolResult>
     }
     case "leaderboard": {
       const metric = String(a.metric);
-      const club = typeof a.club_id === "string" ? a.club_id : null;
-      const era = typeof a.era === "string" ? a.era : null;
+      const club = typeof a.club_id === "string" && a.club_id !== "all" ? a.club_id : null;
+      const era = typeof a.era === "string" && a.era !== "all" ? a.era : null;
       const min = Math.max(1, Number(a.min_matches) || 12);
       const limit = Math.min(50, Math.max(1, Number(a.limit) || 15));
       const scope = `${club ? s.clubById.get(club)?.shortName : "all clubs"}, ${era ? ERA_LABEL[era] : "all eras"}`;

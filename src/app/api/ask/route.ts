@@ -115,7 +115,10 @@ export async function POST(req: Request): Promise<NextResponse<AskResponse>> {
   } catch (e) {
     if (e instanceof Anthropic.RateLimitError) return NextResponse.json({ answer: "", evidence, error: "Too many questions at once. Try again in a minute." }, { status: 429 });
     if (e instanceof Anthropic.AuthenticationError) return NextResponse.json({ answer: "", evidence, error: "The server's API key was rejected." }, { status: 503 });
-    if (e instanceof Anthropic.APIError) return NextResponse.json({ answer: "", evidence, error: `The model service returned an error (${e.status}).` }, { status: 502 });
+    if (e instanceof Anthropic.APIError) {
+      console.error("ask: API error", e.status, e.message);
+      return NextResponse.json({ answer: "", evidence, error: `The model service returned an error (${e.status}): ${e.message}` }, { status: 502 });
+    }
     return NextResponse.json({ answer: "", evidence, error: "Something went wrong answering that." }, { status: 500 });
   }
 }

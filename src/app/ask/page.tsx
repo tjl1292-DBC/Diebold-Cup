@@ -12,7 +12,7 @@ export default function AskPage() {
         title="Ask the record"
         lede="Ask in plain English. The answer is built only from rows in the database, and those rows are shown underneath so you can check it."
       />
-      <AskClient enabled={!!process.env.ANTHROPIC_API_KEY} />
+      <AskClient enabled={!!(process.env.ANTHROPIC_API_KEY || process.env.DieboldGPT || process.env.DIEBOLDGPT)} />
     </>
   );
 }

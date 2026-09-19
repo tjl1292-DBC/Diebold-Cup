@@ -49,9 +49,15 @@ function rateLimited(req: Request): string | null {
   return null;
 }
 
+/** The key can be stored as ANTHROPIC_API_KEY or, as it was entered in the Vercel dashboard, DieboldGPT. */
+function apiKey(): string | undefined {
+  return process.env.ANTHROPIC_API_KEY || process.env.DieboldGPT || process.env.DIEBOLDGPT || undefined;
+}
+
 export async function POST(req: Request): Promise<NextResponse<AskResponse>> {
-  if (!process.env.ANTHROPIC_API_KEY) {
-    return NextResponse.json({ answer: "", evidence: [], error: "The question box is not switched on yet: ANTHROPIC_API_KEY is not set on the server." }, { status: 503 });
+  const key = apiKey();
+  if (!key) {
+    return NextResponse.json({ answer: "", evidence: [], error: "The question box is not switched on yet: no API key is set on the server." }, { status: 503 });
   }
   const limited = rateLimited(req);
   if (limited) return NextResponse.json({ answer: "", evidence: [], error: limited }, { status: 429 });
@@ -66,7 +72,7 @@ export async function POST(req: Request): Promise<NextResponse<AskResponse>> {
   }
   if (!question) return NextResponse.json({ answer: "", evidence: [], error: "Ask something first." }, { status: 400 });
 
-  const client = new Anthropic();
+  const client = new Anthropic({ apiKey: key });
   const messages: Anthropic.MessageParam[] = [...history, { role: "user", content: question }];
   const evidence: Evidence[] = [];
 

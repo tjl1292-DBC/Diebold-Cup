@@ -1,0 +1,48 @@
+# Corrections to the workbook, applied on import
+# ==============================================
+# The workbook stays a faithful transcription of the sheets. When a sheet is
+# wrong and the opposing clubs' sheets show what the number should be, record
+# the fix here instead of editing the cell. Each correction becomes a
+# "corrected" flag on the row so the site can show the original value and why
+# it changed. `player` is the Player(s) cell exactly as written.
+
+corrections:
+  - year: 2014
+    session: Sun Singles
+    club: Fox Chapel
+    player: "A. Begg"
+    set:
+      vs Oakmont: 0
+      vs Longue Vue: 0.5
+    reason: "Half point written in the Oakmont column belongs in the Longue Vue column."
+    evidence: "Only one Oakmont player (Sullivan, 2½) conceded a half to Fox Chapel and Mah already accounts for it; Longue Vue's Heher (2½) conceded a half that no Fox Chapel row carried. Row total unchanged at 2½."
+
+  - year: 2022
+    session: Sat AM Foursomes
+    club: Oakmont
+    player: "Pitcairn / Piatt"
+    set:
+      vs Field Club: 1
+      vs Fox Chapel: 2
+    reason: "Field Club and Fox Chapel values were swapped on Oakmont's sheet."
+    evidence: "Field Club's Warden/Marous show 3 vs Oakmont (so Oakmont's pair scored 1) and Fox Chapel's Mah/Stanchak show 2 vs Oakmont (so 2). Row total unchanged at 7."
+
+  - year: 2023
+    session: Sat PM Four-Ball
+    club: Oakmont
+    player: "Cameron / Summers"
+    set:
+      vs Field Club: 3.5
+      vs Fox Chapel: 4
+    reason: "Field Club and Fox Chapel values were swapped on Oakmont's sheet."
+    evidence: "Field Club's Katarincic/P. Smith show ½ vs Oakmont (so 3½) and Fox Chapel's Carlin/V. Smith show 0 vs Oakmont (so 4). Row total unchanged at 8."
+
+  - year: 2025
+    session: Sat PM Four-Ball
+    club: Oakmont
+    player: "Nathan Piatt / Berglund"
+    set:
+      vs Fox Chapel: 3.5
+      vs Longue Vue: 2
+    reason: "Fox Chapel and Longue Vue values were swapped on Oakmont's sheet."
+    evidence: "Fox Chapel's Smith/Hellberg show ½ vs Oakmont (so 3½) and Longue Vue's Oehrle/Yofan show 2 vs Oakmont (so 2). Row total unchanged at 7½."

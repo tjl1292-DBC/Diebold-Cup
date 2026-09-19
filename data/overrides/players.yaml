@@ -1,0 +1,103 @@
+# Player identity overrides
+# =========================
+# Edit this file to fix misattributions without touching code, then re-run
+# `npm run import`. Three sections:
+#
+#   players:  define or adjust a player. `id` is the URL slug and must be
+#             stable once published. Anything you set here beats what the
+#             resolver would have inferred.
+#   aliases:  pin a spelling (as written on the sheet) to a player id. Scoped
+#             to a club; optionally to a year range. Overrides beat every
+#             automatic rule.
+#   people:   join Player rows at different clubs that are the same human.
+#
+# The resolver's own decisions, with confidence and reasons, are written to
+# reports/player-resolution.md after every import.
+#
+# How names are resolved automatically (in order):
+#   1. an alias rule here
+#   2. exact full name (after nickname folding: Tom/Tommy/Thomas, Pat/Patrick,
+#      Mike/Michael, Jim/James/Jimmy, Jon/John/Jonathan, Dave/David, Sean/Shawn ...)
+#   3. a suffix-less full name merges into a suffixed one when there is exactly
+#      one candidate (John Marous -> John Marous III)
+#   4. initial + surname ("J. Thomas") -> the player with that surname and
+#      initial whose seasons are closest to the row's year
+#   5. surname only ("Thomas") -> the player with that surname whose seasons
+#      are closest to the row's year, ties broken by most appearances
+#   6. otherwise a new player is created from whatever was written
+#
+# Club ids: field-club, fox-chapel, oakmont, longue-vue, allegheny
+# Answers below were confirmed by Tommy on 18 Sep 2026 (review page).
+
+players:
+  - id: oakmont-jim-sullivan-jr
+    club: oakmont
+    displayName: Jim Sullivan Jr.
+    givenName: Jim
+    surname: Sullivan
+    suffix: Jr
+    note: "Appears on the sheets as Jim Sullivan Jr, J. Sullivan Jr., Sullivan Jr. and plain Jim Sullivan / J. Sullivan / Sullivan."
+
+  - id: oakmont-jim-sullivan-sr
+    club: oakmont
+    displayName: Jim Sullivan Sr.
+    givenName: Jim
+    surname: Sullivan
+    suffix: Sr
+    note: "Friday singles, 2000 only."
+
+  - id: oakmont-duke-kingsley
+    club: oakmont
+    displayName: Duke Kingsley
+    givenName: Duke
+    surname: Kingsley
+    note: "Written D. Kingsley (2000), Duke Kinsley (2001) and Kingsley (2008)."
+
+aliases:
+  # --- spelling variants -----------------------------------------------------
+  - { club: longue-vue, name: "Merk Vernallis", player: longue-vue-mark-vernallis }
+  - { club: oakmont,    name: "R. Bergland",    player: oakmont-rich-berglund }
+  - { club: fox-chapel, name: "R. Russel",      player: fox-chapel-r-russell }
+  - { club: fox-chapel, name: "Russell",        player: fox-chapel-r-russell }
+  - { club: oakmont,    name: "D. Kingsley",    player: oakmont-duke-kingsley }
+  - { club: oakmont,    name: "Duke Kinsley",   player: oakmont-duke-kingsley }
+  - { club: oakmont,    name: "Kingsley",       player: oakmont-duke-kingsley }
+
+  # --- Sullivan: Sr played only Friday 2000; everything else is Jr ------------
+  - { club: oakmont, name: "Jim Sullivan", player: oakmont-jim-sullivan-jr }
+  - { club: oakmont, name: "J. Sullivan",  player: oakmont-jim-sullivan-jr }
+  - { club: oakmont, name: "Sullivan",     player: oakmont-jim-sullivan-jr }
+
+  # --- Fox Chapel --------------------------------------------------------------
+  - { club: fox-chapel, name: "B. Smith", years: [2013, 2099], player: fox-chapel-bennett-smith }
+  - { club: fox-chapel, name: "Smith",    years: [2000, 2000], player: fox-chapel-vance-smith-iv }
+  - { club: fox-chapel, name: "Smith",    years: [2025, 2025], player: fox-chapel-bennett-smith }
+  - { club: fox-chapel, name: "Hellberg", years: [2019, 2019], player: fox-chapel-scott-hellberg }
+  - { club: fox-chapel, name: "Bitar",    years: [2023, 2023], player: fox-chapel-scott-bitar-ii }
+
+  # --- Oakmont -----------------------------------------------------------------
+  - { club: oakmont, name: "Bergman",    player: oakmont-brett-bergman }
+  - { club: oakmont, name: "B. Bergman", player: oakmont-brett-bergman }
+  - { club: oakmont, name: "Wagner",     years: [2007, 2008], player: oakmont-chick-wagner }
+  - { club: oakmont, name: "Mazeski",    years: [2016, 2016], player: oakmont-paul-mazeski }
+  - { club: oakmont, name: "Thomas",     years: [2016, 2016], player: oakmont-arne-thomas }
+  - { club: oakmont, name: "Berglund",   years: [2025, 2025], player: oakmont-todd-berglund }
+  - { club: oakmont, name: "Nettles",    years: [2025, 2025], player: oakmont-chuck-nettles }
+
+  # --- Field Club --------------------------------------------------------------
+  - { club: field-club, name: "Veenis",       years: [2007, 2008], player: field-club-mark-veenis }
+  - { club: field-club, name: "Fuhrer",       years: [2019, 2019], player: field-club-jas-fuhrer }
+  - { club: field-club, name: "Frank Fuhrer", player: field-club-frank-fuhrer-iii }
+
+  # --- Longue Vue --------------------------------------------------------------
+  - { club: longue-vue, name: "Cordaro",  years: [2016, 2016], player: longue-vue-anthony-cordaro }
+  - { club: longue-vue, name: "Troutman", years: [2016, 2016], player: longue-vue-jeff-troutman }
+  - { club: longue-vue, name: "Fisch",    years: [2018, 2018], player: longue-vue-matt-fisch }
+
+people:
+  - { name: Jim Bulger,     players: [fox-chapel-jim-bulger, oakmont-jim-bulger] }
+  - { name: Joe O'Donnell,  players: [longue-vue-joe-odonnell, oakmont-joe-odonnell] }
+  - { name: Paul Walsh,     players: [longue-vue-paul-walsh, fox-chapel-paul-walsh] }
+  - { name: Tim Derdenger,  players: [longue-vue-tim-derdenger, fox-chapel-tim-derdenger] }
+  - { name: Rich Berglund,  players: [oakmont-rich-berglund, fox-chapel-rich-berglund] }
+  - { name: Todd Berglund,  players: [fox-chapel-todd-berglund, oakmont-todd-berglund] }

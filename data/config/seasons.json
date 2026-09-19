@@ -1,0 +1,63 @@
+{
+  "_comment": "Archive gaps and season-level caveats. Every year from firstYear to the latest year in the workbook gets a Season row; years absent from Season History take their status from `gaps`. `overrides` adjust seasons that do exist in the workbook.",
+  "firstYear": 1945,
+  "gaps": [
+    {
+      "from": 1955,
+      "to": 1963,
+      "status": "newspaper_only",
+      "note": "Newspaper coverage only. No scoresheets or secretary's letters survive for these years."
+    },
+    {
+      "from": 1964,
+      "to": 1994,
+      "status": "no_documents",
+      "note": "No documents survive. Longue Vue replaced Allegheny at some point in this stretch."
+    },
+    {
+      "from": 1996,
+      "to": 1996,
+      "status": "no_documents",
+      "note": "No documents survive for 1996."
+    }
+  ],
+  "overrides": {
+    "2011": {
+      "statusNote": "The file held only the secretary's letter and recap, no scoresheets, so 2011 has team totals only."
+    },
+    "2022": {
+      "standingsFinal": false,
+      "statusNote": "No Friday singles sheet survives. Totals cover Saturday and Sunday only and no final placings are given."
+    },
+    "1949": {
+      "statusNote": "Allegheny's round totals sum to 65½ against a recorded final of 65. Unresolved; the error is on the original sheet."
+    },
+    "1997": {
+      "statusNote": "Session totals sum to 577 against a recorded 576. Unresolved; the error is on the original sheet. Sunday itself balances."
+    },
+    "1945": {
+      "statusNote": "Match 3 at Oakmont totals 73 where 72 points were played; the final standings carry the extra half point. Error on the original sheet."
+    },
+    "1947": {
+      "statusNote": "Matches 2 and 3 total 180 points each, 36 more than eight-man teams can score; ten a side would give exactly 180. Whether the teams were larger that year or the sheet is wrong is unresolved."
+    },
+    "2002": {
+      "statusNote": "The four finals total 575½ of 576 points played. Half a point is unaccounted for; player rows for 2002 are still to be transcribed."
+    },
+    "2007": {
+      "statusNote": "The Sunday singles sheet credits 147 points where 144 were played; the recorded finals carry the extra 3. Error on the original sheet."
+    },
+    "2023": {
+      "statusNote": "The Sunday singles sheet is a half point short between the Field Club and Fox Chapel; the recorded finals carry it. Error on the original sheet."
+    }
+  },
+  "champions": {
+    "_comment": "Who was engraved when first place was shared or contested. Keyed by year -> list of club ids. Years not listed: every club with place 1 is a champion (the 1999 no-playoff rule).",
+    "1953": {
+      "engraved": [
+        "field-club"
+      ],
+      "note": "Ended 168½-168½. Oakmont waived the trophy rather than play off, so the Field Club took its first title."
+    }
+  }
+}

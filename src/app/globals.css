@@ -1,26 +1,100 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --ground: #f2f3ee;
+  --paper: #ffffff;
+  --ink: #1c261f;
+  --ink-2: #4f5b54;
+  --ink-3: #7c877f;
+  --line: #d9ddd4;
+  --accent: #1f5a3c;
+  --accent-soft: #e2ece5;
+  --brass: #9a6a1c;
+  --brass-soft: #f4ead6;
+  --slate: #4a5d6e;
+  --slate-soft: #e3e9ee;
+  --danger: #9b2f2f;
+  --danger-soft: #f6e3e3;
+  --focus: #2f7bd6;
+  --club-field-club: #7a1f2b;
+  --club-fox-chapel: #b5501f;
+  --club-oakmont: #1f5a3c;
+  --club-longue-vue: #1d4f8a;
+  --club-allegheny: #6b6b6b;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --ground: #131915;
+    --paper: #1b231e;
+    --ink: #e9ede8;
+    --ink-2: #aab4ac;
+    --ink-3: #7f8a82;
+    --line: #313d36;
+    --accent: #7dc79b;
+    --accent-soft: #1e3427;
+    --brass: #d9a94f;
+    --brass-soft: #3a2e17;
+    --slate: #a3b5c4;
+    --slate-soft: #26323b;
+    --danger: #e08b8b;
+    --danger-soft: #3d2222;
+    --club-field-club: #d96a7a;
+    --club-fox-chapel: #e8945f;
+    --club-oakmont: #7dc79b;
+    --club-longue-vue: #7fb0e8;
+    --club-allegheny: #a8a8a8;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@theme inline {
+  --color-ground: var(--ground);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-brass: var(--brass);
+  --color-brass-soft: var(--brass-soft);
+  --color-slate: var(--slate);
+  --color-slate-soft: var(--slate-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-focus: var(--focus);
+  --font-display: var(--font-display), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-body), "Helvetica Neue", Arial, sans-serif;
 }
+
+html { background: var(--ground); color: var(--ink); font-family: var(--font-sans); font-size: 16px; line-height: 1.5; }
+body { background: var(--ground); color: var(--ink); min-height: 100%; }
+
+h1, h2, h3, .display { font-family: var(--font-display); text-wrap: balance; line-height: 1.1; }
+
+a { text-decoration: none; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+.num { font-variant-numeric: tabular-nums; }
+
+table.data { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+table.data th { text-align: left; font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-2); padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+table.data td { padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.data tr:last-child td { border-bottom: 0; }
+table.data th.r, table.data td.r { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+table.data tr.hi td { background: var(--accent-soft); }
+.tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+.club-dot { display: inline-block; width: 10px; height: 10px; border-radius: 999px; vertical-align: middle; margin-right: 6px; }
+.club-dot.field-club, .club-bg.field-club { background: var(--club-field-club); }
+.club-dot.fox-chapel, .club-bg.fox-chapel { background: var(--club-fox-chapel); }
+.club-dot.oakmont, .club-bg.oakmont { background: var(--club-oakmont); }
+.club-dot.longue-vue, .club-bg.longue-vue { background: var(--club-longue-vue); }
+.club-dot.allegheny, .club-bg.allegheny { background: var(--club-allegheny); }
+
+.prose p { margin: 0.75em 0; max-width: 66ch; }
+.prose ul { list-style: disc; padding-left: 1.4em; margin: 0.75em 0; max-width: 66ch; }
+.prose li { margin: 0.25em 0; }
+.prose h2 { font-size: 1.5rem; margin: 1.5em 0 0.5em; }
+.prose h3 { font-size: 1.2rem; margin: 1.25em 0 0.4em; }
+.prose strong { font-weight: 600; }

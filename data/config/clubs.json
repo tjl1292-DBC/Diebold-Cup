@@ -1,0 +1,63 @@
+{
+  "_comment": "Clubs that have held a seat. `sheetLabels` are the spellings used in the workbook's Club/Venue columns; `abbreviations` appear in the secretary's award letters. firstSeasonCertain/lastSeasonCertain=false means the year is the first/last we have a record of, not a documented start/end.",
+  "clubs": [
+    {
+      "id": "field-club",
+      "name": "Pittsburgh Field Club",
+      "shortName": "Field Club",
+      "abbreviation": "PFC",
+      "sheetLabels": ["Field Club", "PFC"],
+      "firstSeason": 1945,
+      "firstSeasonCertain": true,
+      "lastSeason": null,
+      "sortOrder": 1
+    },
+    {
+      "id": "fox-chapel",
+      "name": "Fox Chapel Golf Club",
+      "shortName": "Fox Chapel",
+      "abbreviation": "FCGC",
+      "sheetLabels": ["Fox Chapel", "FCGC"],
+      "firstSeason": 1945,
+      "firstSeasonCertain": true,
+      "lastSeason": null,
+      "sortOrder": 2
+    },
+    {
+      "id": "oakmont",
+      "name": "Oakmont Country Club",
+      "shortName": "Oakmont",
+      "abbreviation": "OCC",
+      "sheetLabels": ["Oakmont", "OCC"],
+      "firstSeason": 1945,
+      "firstSeasonCertain": true,
+      "lastSeason": null,
+      "sortOrder": 3
+    },
+    {
+      "id": "longue-vue",
+      "name": "Longue Vue Club",
+      "shortName": "Longue Vue",
+      "abbreviation": "LVC",
+      "sheetLabels": ["Longue Vue", "LVC"],
+      "firstSeason": 1995,
+      "firstSeasonCertain": false,
+      "lastSeason": null,
+      "seatNote": "Longue Vue holds the fourth seat by 1995, the earliest surviving post-war record. It replaced Allegheny Country Club at some point in the undocumented 1955-1994 stretch.",
+      "sortOrder": 4
+    },
+    {
+      "id": "allegheny",
+      "name": "Allegheny Country Club",
+      "shortName": "Allegheny",
+      "abbreviation": "ACC",
+      "sheetLabels": ["Allegheny", "ACC"],
+      "firstSeason": 1946,
+      "firstSeasonCertain": true,
+      "lastSeason": 1954,
+      "lastSeasonCertain": false,
+      "seatNote": "Joined in 1946 as the fourth club. 1954 is the last season with a surviving record; when Allegheny left and Longue Vue took the seat is unknown.",
+      "sortOrder": 5
+    }
+  ]
+}

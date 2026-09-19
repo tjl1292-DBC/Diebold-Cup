@@ -1,0 +1,90 @@
+{
+  "_comment": "Scoring rules by year range. `to: null` means open-ended. The importer stamps these onto each Session; the validator reads them back from the database, never from here. Add a new range here if the league changes the format again.",
+  "eras": [
+    {
+      "id": "early",
+      "name": "Early era",
+      "from": 1945,
+      "to": 1954,
+      "description": "Four matches a season, one at each club, all singles. Eight men a side, Nassau scoring: 3 points per opponent (front nine, back nine, overall), 9 points max per man. 1945 had three clubs and three matches. Allegheny Country Club held the fourth seat 1946-1954."
+    },
+    {
+      "id": "middle",
+      "name": "Middle era",
+      "from": 1995,
+      "to": 2006,
+      "description": "The modern weekend format, but only team results survive for most years. Player rows exist for 2000 and 2001; the rest are still to be transcribed."
+    },
+    {
+      "id": "modern",
+      "name": "Modern era",
+      "from": 2007,
+      "to": null,
+      "description": "Full player-by-player rows for every session (2011 excepted). Friday singles, Saturday foursomes and four-ball, Sunday singles, one host club per session on a fixed rotation."
+    }
+  ],
+  "singles": {
+    "ptsPerMatch": 3,
+    "matchesPerPairing": 8
+  },
+  "pairs": {
+    "matchesPerPairing": 4,
+    "ptsPerMatchByYear": [
+      {
+        "from": 1995,
+        "to": 2007,
+        "ptsPerMatch": 6
+      },
+      {
+        "from": 2008,
+        "to": 2014,
+        "ptsPerMatch": 3
+      },
+      {
+        "from": 2015,
+        "to": null,
+        "ptsPerMatch": 4
+      }
+    ]
+  },
+  "earlyEraMatches": {
+    "ptsPerMatch": 3,
+    "matchesPerPairing": 8
+  },
+  "modernSlots": [
+    {
+      "ordinal": 1,
+      "slot": "fri",
+      "defaultFormat": "singles",
+      "day": "Friday"
+    },
+    {
+      "ordinal": 2,
+      "slot": "sat_am",
+      "defaultFormat": "foursomes",
+      "day": "Saturday AM"
+    },
+    {
+      "ordinal": 3,
+      "slot": "sat_pm",
+      "defaultFormat": "four_ball",
+      "day": "Saturday PM"
+    },
+    {
+      "ordinal": 4,
+      "slot": "sun",
+      "defaultFormat": "singles",
+      "day": "Sunday"
+    }
+  ],
+  "slotOverrides": {
+    "_comment": "Years where the Saturday order was flipped. Keyed by year, then ordinal -> format.",
+    "2024": {
+      "2": "four_ball",
+      "3": "foursomes"
+    }
+  },
+  "sessionOverrides": {
+    "_comment": "Per-session overrides keyed by session id (year-ordinal). Use when a session was played with a different team size or points. Example: {\"1947-2\": {\"matchesPerPairing\": 10, \"note\": \"...\"}}. Nothing is overridden until you add an entry."
+  }
+}

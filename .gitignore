@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# database (rebuilt by npm run import)
+data/diebold.db
+data/diebold.db-journal
+.env

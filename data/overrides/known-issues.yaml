@@ -1,0 +1,62 @@
+# Acknowledged validation findings
+# ================================
+# scripts/validate.ts fails CI on any `error`-severity finding that is not
+# listed here. Acknowledging a finding does not hide it: it still becomes a
+# DataFlag and the site still shows it. It only stops CI from treating it as
+# a transcription error you have not looked at yet.
+#
+# Each entry needs the finding's `key` exactly as printed in
+# reports/validation.md, plus a reason.
+
+acknowledged:
+  - key: season_sum_mismatch:1949:allegheny
+    reason: "Rounds sum to 65½ against a recorded 65. Error is on the original 1949 sheet; unresolved."
+  - key: season_available_mismatch:1997
+    reason: "The four finals sum to 577 against 576 points available. Error is on the original 1997 sheet; Sunday balances."
+  - key: session_total_mismatch:2009-4:longue-vue
+    reason: "Player rows total 31; the scorekeeper wrote 30 and carried it to the 73½ final. Opponents' sheets confirm 31. Team Summary keeps the official figure."
+  - key: season_available_mismatch:1949
+    reason: "Same root cause as season_sum_mismatch:1949:allegheny — the recorded 65 is ½ short, so the four finals sum to 575½."
+  - key: session_available_mismatch:2009-4
+    reason: "Same root cause as session_total_mismatch:2009-4:longue-vue — the official 30 is one short of the rows' 31."
+  - key: season_available_mismatch:2009
+    reason: "Same root cause as session_total_mismatch:2009-4:longue-vue — Longue Vue's 73½ final carries the one-point slip."
+
+  # 2007 Sunday singles: the compiled sheet credits 147 points where 144 were
+  # played. Longue Vue's Kelly shows 2 vs Oakmont where the Oakmont column
+  # supports 1½, and either a Longue Vue 2½ vs Fox Chapel or Bulger's 3 vs
+  # Longue Vue is 2½ too high. The rows match the sheet and the league's
+  # recorded totals, so it is kept as recorded and shown as a sheet error.
+  - key: h2h_imbalance:2007-4:oakmont:longue-vue
+    reason: "Original 2007 Sunday sheet over-credits Longue Vue by ½ against Oakmont (Kelly). Kept as recorded."
+  - key: h2h_imbalance:2007-4:longue-vue:fox-chapel
+    reason: "Original 2007 Sunday sheet is 2½ over between Longue Vue and Fox Chapel; cannot tell which row. Kept as recorded."
+  - key: session_available_mismatch:2007-4
+    reason: "Same sheet: 147 credited, 144 played."
+  - key: season_available_mismatch:2007
+    reason: "Same sheet: the 2007 finals carry the Sunday sheet's 3 extra points."
+
+  # 2023 Sunday singles: the single typed sheet is internally consistent but
+  # ½ point short between Field Club and Fox Chapel (Delaney 2½ where the
+  # Field Club column supports 3, or a Field Club 0 that should be ½).
+  - key: h2h_imbalance:2023-4:field-club:fox-chapel
+    reason: "Original 2023 Sunday sheet is ½ short between Field Club and Fox Chapel; cannot tell which row. Kept as recorded."
+  - key: session_available_mismatch:2023-4
+    reason: "Same sheet: 143½ credited, 144 played."
+  - key: season_available_mismatch:2023
+    reason: "Same sheet: the 2023 finals carry the Sunday sheet's missing ½."
+
+  # Confirmed by Tommy 18 Sep 2026: no scans for these years; recorded as
+  # errors on the original sheets.
+  - key: session_available_mismatch:1945-3
+    reason: "Match 3 at Oakmont totals 73 where 72 were played. No scan to check. Kept as recorded."
+  - key: season_available_mismatch:1945
+    reason: "Same sheet: the 1945 finals carry the extra ½."
+  - key: session_available_mismatch:1947-2
+    reason: "180 points recorded where eight-man teams could score 144; ten a side would give exactly 180. Unresolved. Kept as recorded."
+  - key: session_available_mismatch:1947-3
+    reason: "Same as match 2."
+  - key: season_available_mismatch:1947
+    reason: "The 1947 finals (648) carry matches 2 and 3 at 180 each."
+  - key: season_available_mismatch:2002
+    reason: "Finals total 575½ of 576. No scan yet; 2002 is still to be transcribed."

@@ -1,12 +1,11 @@
 import Anthropic from "@anthropic-ai/sdk";
-import { NextResponse } from "next/server";
 import { TOOLS, SYSTEM_PROMPT, runTool, type ToolResult } from "@/lib/ask-tools";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
 
 const MODEL = "claude-opus-5";
-const MAX_TURNS = 8;
+const MAX_TURNS = 6;
 
 export interface Evidence {
   tool: string;
@@ -14,11 +13,14 @@ export interface Evidence {
   result: ToolResult;
 }
 
-export interface AskResponse {
-  answer: string;
-  evidence: Evidence[];
-  error?: string;
-}
+/**
+ * The response is a stream of newline-delimited JSON events:
+ *   {type:"status", text}            what is being looked up
+ *   {type:"evidence", tool, input, result}
+ *   {type:"reset"}                    discard any text shown so far (a new turn began)
+ *   {type:"text", delta}             a piece of the answer
+ *   {type:"done"} | {type:"error", message}
+ */
 
 /**
  * Simple abuse guard: per-visitor and site-wide limits kept in memory. On
@@ -54,71 +56,110 @@ function apiKey(): string | undefined {
   return process.env.ANTHROPIC_API_KEY || process.env.DieboldGPT || process.env.DIEBOLDGPT || undefined;
 }
 
-export async function POST(req: Request): Promise<NextResponse<AskResponse>> {
+const TOOL_STATUS: Record<string, string> = {
+  search_players: "Looking that name up on the sheets…",
+  player_record: "Pulling every match they played…",
+  season_results: "Unfolding that year's scoresheets…",
+  all_time_standings: "Counting the engravings on the cup…",
+  club_record: "Going through the club's seasons…",
+  leaderboard: "Ranking everybody, fairly, across eras…",
+};
+
+function ndjson(obj: unknown): Uint8Array {
+  return new TextEncoder().encode(JSON.stringify(obj) + "\n");
+}
+
+function errorResponse(message: string, status: number): Response {
+  return new Response(JSON.stringify({ type: "error", message }) + "\n", { status, headers: { "content-type": "application/x-ndjson; charset=utf-8" } });
+}
+
+export async function POST(req: Request): Promise<Response> {
   const key = apiKey();
-  if (!key) {
-    return NextResponse.json({ answer: "", evidence: [], error: "The question box is not switched on yet: no API key is set on the server." }, { status: 503 });
-  }
+  if (!key) return errorResponse("The question box is not switched on yet: no API key is set on the server.", 503);
   const limited = rateLimited(req);
-  if (limited) return NextResponse.json({ answer: "", evidence: [], error: limited }, { status: 429 });
+  if (limited) return errorResponse(limited, 429);
+
   let question = "";
   let history: Anthropic.MessageParam[] = [];
   try {
     const body = (await req.json()) as { question?: string; history?: Anthropic.MessageParam[] };
     question = String(body.question ?? "").trim().slice(0, 1000);
-    history = Array.isArray(body.history) ? body.history.slice(-10) : [];
+    history = Array.isArray(body.history) ? body.history.slice(-6) : [];
   } catch {
-    return NextResponse.json({ answer: "", evidence: [], error: "Bad request." }, { status: 400 });
+    return errorResponse("Bad request.", 400);
   }
-  if (!question) return NextResponse.json({ answer: "", evidence: [], error: "Ask something first." }, { status: 400 });
+  if (!question) return errorResponse("Ask something first.", 400);
 
   const client = new Anthropic({ apiKey: key });
   const messages: Anthropic.MessageParam[] = [...history, { role: "user", content: question }];
-  const evidence: Evidence[] = [];
 
-  try {
-    for (let turn = 0; turn < MAX_TURNS; turn++) {
-      const response = await client.messages.create({
-        model: MODEL,
-        max_tokens: 4000,
-        system: [{ type: "text", text: SYSTEM_PROMPT, cache_control: { type: "ephemeral" } }],
-        tools: TOOLS,
-        messages,
-      });
+  const stream = new ReadableStream<Uint8Array>({
+    async start(controller) {
+      const send = (obj: unknown) => controller.enqueue(ndjson(obj));
+      try {
+        for (let turn = 0; turn < MAX_TURNS; turn++) {
+          const s = client.messages.stream({
+            model: MODEL,
+            max_tokens: 1500,
+            output_config: { effort: "low" },
+            system: [{ type: "text", text: SYSTEM_PROMPT, cache_control: { type: "ephemeral" } }],
+            tools: TOOLS,
+            messages,
+          });
+          let sentText = false;
+          s.on("text", (delta) => {
+            sentText = true;
+            send({ type: "text", delta });
+          });
+          const response = await s.finalMessage();
 
-      if (response.stop_reason === "refusal") {
-        return NextResponse.json({ answer: "I can't help with that one.", evidence });
-      }
-      if (response.stop_reason === "pause_turn") {
-        messages.push({ role: "assistant", content: response.content });
-        continue;
-      }
-      const toolUses = response.content.filter((b): b is Anthropic.ToolUseBlock => b.type === "tool_use");
-      if (response.stop_reason !== "tool_use" || toolUses.length === 0) {
-        const answer = response.content.filter((b): b is Anthropic.TextBlock => b.type === "text").map((b) => b.text).join("\n").trim();
-        return NextResponse.json({ answer: answer || "I couldn't find that in the record.", evidence });
-      }
-      messages.push({ role: "assistant", content: response.content });
-      const results: Anthropic.ToolResultBlockParam[] = [];
-      for (const use of toolUses) {
-        try {
-          const result = await runTool(use.name, use.input);
-          evidence.push({ tool: use.name, input: use.input, result });
-          results.push({ type: "tool_result", tool_use_id: use.id, content: JSON.stringify(result) });
-        } catch (e) {
-          results.push({ type: "tool_result", tool_use_id: use.id, is_error: true, content: `Tool failed: ${(e as Error).message}` });
+          if (response.stop_reason === "refusal") {
+            if (sentText) send({ type: "reset" });
+            send({ type: "text", delta: "I can't help with that one." });
+            break;
+          }
+          if (response.stop_reason === "pause_turn") {
+            messages.push({ role: "assistant", content: response.content });
+            continue;
+          }
+          const toolUses = response.content.filter((b): b is Anthropic.ToolUseBlock => b.type === "tool_use");
+          if (response.stop_reason !== "tool_use" || toolUses.length === 0) {
+            if (!sentText) send({ type: "text", delta: "I couldn't find that in the record." });
+            break;
+          }
+          // A new turn is starting: anything shown so far was preamble.
+          if (sentText) send({ type: "reset" });
+          messages.push({ role: "assistant", content: response.content });
+          const results: Anthropic.ToolResultBlockParam[] = [];
+          for (const use of toolUses) {
+            send({ type: "status", text: TOOL_STATUS[use.name] ?? "Checking the record…" });
+            try {
+              const result = await runTool(use.name, use.input);
+              send({ type: "evidence", tool: use.name, input: use.input, result });
+              results.push({ type: "tool_result", tool_use_id: use.id, content: JSON.stringify(result) });
+            } catch (e) {
+              results.push({ type: "tool_result", tool_use_id: use.id, is_error: true, content: `Tool failed: ${(e as Error).message}` });
+            }
+          }
+          messages.push({ role: "user", content: results });
+          if (turn === MAX_TURNS - 1) send({ type: "text", delta: "That took too many steps to answer. Try a narrower question." });
         }
+        send({ type: "done" });
+      } catch (e) {
+        if (e instanceof Anthropic.RateLimitError) send({ type: "error", message: "Too many questions at once. Try again in a minute." });
+        else if (e instanceof Anthropic.AuthenticationError) send({ type: "error", message: "The server's API key was rejected." });
+        else if (e instanceof Anthropic.APIError) {
+          console.error("ask: API error", e.status, e.message);
+          send({ type: "error", message: `The model service returned an error (${e.status}).` });
+        } else {
+          console.error("ask: failed", e);
+          send({ type: "error", message: "Something went wrong answering that." });
+        }
+      } finally {
+        controller.close();
       }
-      messages.push({ role: "user", content: results });
-    }
-    return NextResponse.json({ answer: "That took too many steps to answer. Try a narrower question.", evidence });
-  } catch (e) {
-    if (e instanceof Anthropic.RateLimitError) return NextResponse.json({ answer: "", evidence, error: "Too many questions at once. Try again in a minute." }, { status: 429 });
-    if (e instanceof Anthropic.AuthenticationError) return NextResponse.json({ answer: "", evidence, error: "The server's API key was rejected." }, { status: 503 });
-    if (e instanceof Anthropic.APIError) {
-      console.error("ask: API error", e.status, e.message);
-      return NextResponse.json({ answer: "", evidence, error: `The model service returned an error (${e.status}): ${e.message}` }, { status: 502 });
-    }
-    return NextResponse.json({ answer: "", evidence, error: "Something went wrong answering that." }, { status: 500 });
-  }
+    },
+  });
+
+  return new Response(stream, { headers: { "content-type": "application/x-ndjson; charset=utf-8", "cache-control": "no-store" } });
 }

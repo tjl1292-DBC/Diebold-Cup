@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { getStore, allTimeStandings, latestFinalSeason, seasonView, fmtPts } from "@/lib/data";
-import { SearchBox } from "@/components/SearchBox";
+import { AskClient } from "@/app/ask/AskClient";
 import { Section, ClubName, Pct, SeasonLink, Place, Pill, STATUS_LABEL } from "@/components/ui";
 
 export default async function Home() {
+  const askEnabled = !!(process.env.ANTHROPIC_API_KEY || process.env.DieboldGPT || process.env.DIEBOLDGPT);
   const s = await getStore();
   const standings = allTimeStandings(s);
   const latest = latestFinalSeason(s);
@@ -25,9 +26,9 @@ export default async function Home() {
             played for the cup since A.J. Diebold proposed it in the summer of 1945.
           </p>
           <div className="mt-6 max-w-xl">
-            <SearchBox large />
-            <p className="mt-2 text-sm text-ink-3">
-              Try a surname, a year like 2019, or a club. Or <Link href="/ask" className="text-accent font-semibold">ask a question</Link>.
+            <AskClient enabled={askEnabled} compact />
+            <p className="mt-3 text-sm text-ink-3">
+              The historian answers only from the record and shows you the rows. Prefer to browse? Use the search box above, or <Link href="/ask" className="text-accent font-semibold">the full question page</Link>.
             </p>
           </div>
         </div>

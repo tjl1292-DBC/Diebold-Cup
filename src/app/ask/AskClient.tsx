@@ -41,7 +41,7 @@ const WAITING = [
   "Checking the arithmetic against the other club's sheet…",
   "Asking the secretary, who is not in a hurry…",
   "Consulting the Nassau tables…",
-  "Looking for the Friday sheet 2022 never had…",
+  "Checking whether it rained on Friday in 2022…",
   "Squinting at a faint 2007 scan…",
   "Ranking everyone fairly across three scoring eras…",
 ];

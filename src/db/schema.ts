@@ -53,7 +53,7 @@ export const eras = sqliteTable("eras", {
 /**
  * Season status:
  *  complete          player rows for every session
- *  partial           player rows exist but a session is missing (2022)
+ *  partial           player rows exist but a played session has no sheet
  *  team_totals_only  Season History row only (1945-54, 1995-2006, 2011)
  *  newspaper_only    1955-1963
  *  no_documents      1964-1994, 1996
@@ -64,7 +64,7 @@ export const seasons = sqliteTable("seasons", {
   year: integer("year").primaryKey(),
   eraId: text("era_id").references(() => eras.id),
   status: text("status").$type<SeasonStatus>().notNull(),
-  /** False when no final placings can be given (2022 has no Friday sheet). */
+  /** False when no final placings can be given. */
   standingsFinal: integer("standings_final", { mode: "boolean" }).notNull().default(true),
   hasPlayerRows: integer("has_player_rows", { mode: "boolean" }).notNull().default(false),
   clubCount: integer("club_count"), // 3 in 1945, otherwise 4
@@ -102,6 +102,10 @@ export const sessions = sqliteTable(
     matchesPerPairing: integer("matches_per_pairing").notNull(), // 8 singles, 4 pairs
     playersPerEntry: integer("players_per_entry").notNull(), // 1 or 2
     hasPlayerRows: integer("has_player_rows", { mode: "boolean" }).notNull().default(false),
+    /** False when the session was scheduled but never played (2022 Friday, rained out). */
+    played: integer("played", { mode: "boolean" }).notNull().default(true),
+    /** Why it was not played, or any other session-level remark. */
+    note: text("note"),
   },
   (t) => [uniqueIndex("sessions_year_ordinal").on(t.seasonYear, t.ordinal)],
 );

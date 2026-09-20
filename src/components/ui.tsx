@@ -107,6 +107,7 @@ const KIND_LABEL: Record<string, string> = {
   venue_assumed: "Venue assumed",
   venue_unknown: "Venue unknown",
   missing_session: "Missing sheet",
+  session_not_played: "Not played",
   identity_ambiguous: "Name uncertain",
   identity_review: "Name uncertain",
   import_warning: "Note",

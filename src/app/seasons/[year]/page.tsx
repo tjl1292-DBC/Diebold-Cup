@@ -170,6 +170,7 @@ export default async function SeasonPage({ params }: { params: Promise<Params> }
                   <td>
                     {x.venue ? <ClubName club={x.venue} /> : <span className="text-ink-3">venue not recorded</span>}
                     {!x.session.venueCertain && <span className="ml-1 text-brass" title={x.session.venueNote ?? ""}>*</span>}
+                    {!x.session.played && <span className="ml-2"><Pill tone="brass">not played</Pill></span>}
                   </td>
                   <td className="text-ink-2 whitespace-nowrap">{x.session.dateText ?? ""}</td>
                   <td className="r text-ink-2 whitespace-nowrap">
@@ -229,7 +230,9 @@ export default async function SeasonPage({ params }: { params: Promise<Params> }
               </>
             }
           >
-            {x.entries.length === 0 ? (
+            {!x.session.played ? (
+              <Empty>{x.session.note ?? "This session was not played."}</Empty>
+            ) : x.entries.length === 0 ? (
               <Empty>No scoresheet survives for this session.</Empty>
             ) : (
               <div className="grid gap-4 lg:grid-cols-2">

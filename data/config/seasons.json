@@ -1,5 +1,5 @@
 {
-  "_comment": "Archive gaps and season-level caveats. Every year from firstYear to the latest year in the workbook gets a Season row; years absent from Season History take their status from `gaps`. `overrides` adjust seasons that do exist in the workbook.",
+  "_comment": "Archive gaps and season-level caveats. Every year from firstYear to the latest year in the workbook gets a Season row; years absent from Season History take their status from `gaps`. `overrides` adjust seasons that do exist in the workbook. `placesFromFinals` ranks clubs by their final points when the sheet gives no places.",
   "firstYear": 1945,
   "gaps": [
     {
@@ -26,8 +26,9 @@
       "statusNote": "The file held only the secretary's letter and recap, no scoresheets, so 2011 has team totals only."
     },
     "2022": {
-      "standingsFinal": false,
-      "statusNote": "No Friday singles sheet survives. Totals cover Saturday and Sunday only and no final placings are given."
+      "standingsFinal": true,
+      "placesFromFinals": true,
+      "statusNote": "Friday singles at Fox Chapel were rained out. The cup was decided on Saturday and Sunday, so the totals are the final standings."
     },
     "1949": {
       "statusNote": "Allegheny's round totals sum to 65½ against a recorded final of 65. Unresolved; the error is on the original sheet."

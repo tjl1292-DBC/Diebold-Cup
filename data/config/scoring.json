@@ -85,6 +85,10 @@
     }
   },
   "sessionOverrides": {
-    "_comment": "Per-session overrides keyed by session id (year-ordinal). Use when a session was played with a different team size or points. Example: {\"1947-2\": {\"matchesPerPairing\": 10, \"note\": \"...\"}}. Nothing is overridden until you add an entry."
+    "_comment": "Per-session overrides keyed by session id (year-ordinal). Fields: ptsPerMatch, matchesPerPairing, played (false = scheduled but never played), note.",
+    "2022-1": {
+      "played": false,
+      "note": "Rained out. Friday singles at Fox Chapel were not played, so the 2022 cup was decided on the three remaining sessions."
+    }
   }
 }

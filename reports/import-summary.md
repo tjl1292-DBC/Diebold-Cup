@@ -1,6 +1,6 @@
 # Import summary
 
-Generated 2026-09-18T16:27:06.479Z from `Diebold_Cup_Results_1945-2025.xlsx` (sha256 ab3d3fa63a87).
+Generated 2026-09-20T02:21:35.588Z from `Diebold_Cup_Results_1945-2025.xlsx` (sha256 ab3d3fa63a87).
 
 | Table | Rows |
 |---|---|
@@ -100,7 +100,7 @@ Generated 2026-09-18T16:27:06.479Z from `Diebold_Cup_Results_1945-2025.xlsx` (sh
 | 2019 | modern | complete | 4 | 4/4 | 96 | Oakmont |  |
 | 2020 | modern | complete | 4 | 4/4 | 96 | Oakmont |  |
 | 2021 | modern | complete | 4 | 4/4 | 96 | Oakmont |  |
-| 2022 | modern | partial | 4 | 3/4 | 64 | - | 4 |
+| 2022 | modern | complete | 4 | 3/4 | 64 | Oakmont | 4 |
 | 2023 | modern | complete | 4 | 4/4 | 96 | Oakmont | 2 |
 | 2024 | modern | complete | 4 | 4/4 | 96 | Longue Vue | 1 |
 | 2025 | modern | complete | 4 | 4/4 | 96 | Oakmont | 4 |
@@ -111,9 +111,9 @@ Generated 2026-09-18T16:27:06.479Z from `Diebold_Cup_Results_1945-2025.xlsx` (sh
 |---|---|---|
 | corrected | info | 4 |
 | import_warning | warning | 1 |
-| missing_session | warning | 1 |
 | season_note | info | 8 |
 | season_note | warning | 9 |
+| session_not_played | info | 1 |
 | sheet_note | info | 54 |
 | sheet_note | warning | 1 |
 | venue_assumed | info | 1 |
@@ -129,7 +129,6 @@ Generated 2026-09-18T16:27:06.479Z from `Diebold_Cup_Results_1945-2025.xlsx` (sh
 - [warning] season_note 2002   — The four finals total 575½ of 576 points played. Half a point is unaccounted for; player rows for 2002 are still to be transcribed.
 - [warning] season_note 2007   — The Sunday singles sheet credits 147 points where 144 were played; the recorded finals carry the extra 3. Error on the original sheet.
 - [warning] season_note 2011   — The file held only the secretary's letter and recap, no scoresheets, so 2011 has team totals only.
-- [warning] season_note 2022   — No Friday singles sheet survives. Totals cover Saturday and Sunday only and no final placings are given.
-- [warning] missing_session 2022 2022-1  — Friday Singles 2022: no scoresheet survives; player rows exist for the other sessions.
+- [warning] season_note 2022   — Friday singles at Fox Chapel were rained out. The cup was decided on Saturday and Sunday, so the totals are the final standings.
 - [warning] season_note 2023   — The Sunday singles sheet is a half point short between the Field Club and Fox Chapel; the recorded finals carry it. Error on the original sheet.
 - [warning] sheet_note 2007 2007-1 2007-1-field-club-3 — Faint scan — low confidence

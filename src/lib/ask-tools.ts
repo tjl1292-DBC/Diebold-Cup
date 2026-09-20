@@ -175,8 +175,8 @@ export async function runTool(name: string, input: unknown): Promise<ToolResult>
         },
         {
           title: "Sessions",
-          columns: ["Session", "Venue", "Date", "Matches per pairing", "Points per match", "Player rows"],
-          rows: v.sessions.map((x) => [x.session.name, x.venue?.shortName ?? "not recorded", x.session.dateText, x.session.matchesPerPairing, fmtPts(x.session.ptsPerMatch), x.entries.length]),
+          columns: ["Session", "Venue", "Date", "Matches per pairing", "Points per match", "Player rows", "Note"],
+          rows: v.sessions.map((x) => [x.session.name, x.venue?.shortName ?? "not recorded", x.session.dateText, x.session.matchesPerPairing, fmtPts(x.session.ptsPerMatch), x.entries.length, x.session.played ? x.session.note : `NOT PLAYED. ${x.session.note ?? ""}`]),
         },
       ];
       if (v.awards.length) tables.push({ title: "Awards", columns: ["Award", "Winner", "Club", "Score"], rows: v.awards.map((x) => [x.type.replace("_", " "), x.namesText, x.club?.shortName ?? null, x.scoreText]) });

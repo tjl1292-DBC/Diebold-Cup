@@ -62,12 +62,12 @@ interface ScoringCfg {
   earlyEraMatches: { ptsPerMatch: number; matchesPerPairing: number };
   modernSlots: { ordinal: number; slot: string; defaultFormat: Format; day: string }[];
   slotOverrides: Record<string, Record<string, Format> | string>;
-  sessionOverrides?: Record<string, { ptsPerMatch?: number; matchesPerPairing?: number; note?: string } | string>;
+  sessionOverrides?: Record<string, { ptsPerMatch?: number; matchesPerPairing?: number; played?: boolean; note?: string } | string>;
 }
 interface SeasonsCfg {
   firstYear: number;
   gaps: { from: number; to: number; status: schema.SeasonStatus; note: string }[];
-  overrides: Record<string, { standingsFinal?: boolean; statusNote?: string }>;
+  overrides: Record<string, { standingsFinal?: boolean; placesFromFinals?: boolean; statusNote?: string }>;
   champions: Record<string, { engraved: string[]; note?: string } | string>;
 }
 type Format = "singles" | "foursomes" | "four_ball";
@@ -424,7 +424,11 @@ for (let year = seasonsCfg.firstYear; year <= lastYear; year++) {
   const isEarly = era?.id === "early";
   const sessionCount = isEarly ? clubCount : scoring.modernSlots.length;
   const sessionsWithRows = [...Array(sessionCount).keys()].filter((i) => rowsByYearOrdinal.has(`${year}-${i + 1}`)).length;
-  const status: schema.SeasonStatus = sessionsWithRows === 0 ? "team_totals_only" : sessionsWithRows === sessionCount ? "complete" : "partial";
+  const sessionsPlayed = [...Array(sessionCount).keys()].filter((i) => {
+    const so = scoring.sessionOverrides?.[`${year}-${i + 1}`];
+    return !(typeof so === "object" && so.played === false);
+  }).length;
+  const status: schema.SeasonStatus = sessionsWithRows === 0 ? "team_totals_only" : sessionsWithRows >= sessionsPlayed ? "complete" : "partial";
   const standingsFinal = ov.standingsFinal ?? sh.every((r) => r.place !== null);
   out.seasons.push({
     year,
@@ -487,7 +491,9 @@ for (let year = seasonsCfg.firstYear; year <= lastYear; year++) {
     const sessionOverride = typeof so === "object" ? so : null;
     const ptsPerMatch = sessionOverride?.ptsPerMatch ?? (isEarly ? scoring.earlyEraMatches.ptsPerMatch : isSingles ? scoring.singles.ptsPerMatch : pairsPts(year));
     const matchesPerPairing = sessionOverride?.matchesPerPairing ?? (isEarly ? scoring.earlyEraMatches.matchesPerPairing : isSingles ? scoring.singles.matchesPerPairing : scoring.pairs.matchesPerPairing);
-    if (sessionOverride) addFlag({ kind: "scoring_override", severity: "info", seasonYear: year, sessionId: id, message: `Scoring overridden in config: ${matchesPerPairing} matches x ${ptsPerMatch} pts per pairing.${sessionOverride.note ? ` ${sessionOverride.note}` : ""}` });
+    const played = sessionOverride?.played ?? true;
+    if (sessionOverride && (sessionOverride.ptsPerMatch !== undefined || sessionOverride.matchesPerPairing !== undefined)) addFlag({ kind: "scoring_override", severity: "info", seasonYear: year, sessionId: id, message: `Scoring overridden in config: ${matchesPerPairing} matches x ${ptsPerMatch} pts per pairing.${sessionOverride.note ? ` ${sessionOverride.note}` : ""}` });
+    if (!played) addFlag({ kind: "session_not_played", severity: "info", seasonYear: year, sessionId: id, message: sessionOverride?.note ?? `${name} ${year} was not played.` });
     const playersPerEntry = isSingles ? 1 : 2;
 
     // venue
@@ -512,7 +518,7 @@ for (let year = seasonsCfg.firstYear; year <= lastYear; year++) {
       venueNote = "Venue not recorded.";
       addFlag({ kind: "venue_unknown", severity: "info", seasonYear: year, sessionId: id, message: `${name} ${year}: venue not recorded.` });
     }
-    if (rows.length === 0 && sessionsWithRows > 0) {
+    if (rows.length === 0 && sessionsWithRows > 0 && played) {
       addFlag({ kind: "missing_session", severity: "warning", seasonYear: year, sessionId: id, message: `${name} ${year}: no scoresheet survives; player rows exist for the other sessions.` });
     }
 
@@ -532,6 +538,8 @@ for (let year = seasonsCfg.firstYear; year <= lastYear; year++) {
       matchesPerPairing,
       playersPerEntry,
       hasPlayerRows: rows.length > 0,
+      played,
+      note: sessionOverride?.note ?? null,
     });
     sessionInfo.set(id, { id, year, ordinal, format, ptsPerMatch, matchesPerPairing, playersPerEntry, clubIds });
 
@@ -541,7 +549,7 @@ for (let year = seasonsCfg.firstYear; year <= lastYear; year++) {
         clubId: r.clubId,
         points: r.rounds[ordinal - 1] ?? null,
         pointsFromRows: null, // filled after entries
-        available: (clubCount - 1) * matchesPerPairing * ptsPerMatch,
+        available: played ? (clubCount - 1) * matchesPerPairing * ptsPerMatch : 0,
       });
     }
   }
@@ -554,6 +562,12 @@ for (let year = seasonsCfg.firstYear; year <= lastYear; year++) {
   // team season results
   const champCfg = seasonsCfg.champions[String(year)];
   const engraved = typeof champCfg === "object" ? champCfg.engraved : null;
+  if (ov.placesFromFinals && sh.every((r) => r.place === null && r.final !== null)) {
+    const sorted = [...sh].sort((a, b) => (b.final ?? 0) - (a.final ?? 0));
+    sorted.forEach((r, i) => {
+      r.place = i > 0 && Math.abs((sorted[i - 1].final ?? 0) - (r.final ?? 0)) < 1e-9 ? sorted[i - 1].place : i + 1;
+    });
+  }
   const firstPlaces = sh.filter((r) => r.place === 1).length;
   for (const r of sh) {
     const allRecorded = r.rounds.slice(0, sessionCount).every((v) => v !== null);

@@ -159,7 +159,7 @@ export default async function Home() {
           ))}
         </div>
         <p className="mt-4 text-sm text-ink-2">
-          <Pill tone="brass">Archive gaps</Pill> No documents survive for 1955–1994 or 1996, 2011 has team totals only, and 2022 has no Friday sheet. The timeline shows each gap rather than skipping it.
+          <Pill tone="brass">Archive gaps</Pill> No documents survive for 1955–1994 or 1996, 2011 has team totals only, and 2022's Friday was rained out. The timeline shows each gap rather than skipping it.
         </p>
       </Section>
     </>

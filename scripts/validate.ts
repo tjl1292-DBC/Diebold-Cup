@@ -151,7 +151,7 @@ async function main() {
       }
     }
     const seasonSessions = sessions.filter((s) => s.seasonYear === season.year);
-    const allSessionsRecorded = seasonSessions.length > 0 && seasonSessions.every((s) => (tsrBySession.get(s.id) ?? []).every((t) => t.points !== null));
+    const allSessionsRecorded = seasonSessions.length > 0 && seasonSessions.filter((s) => s.played).every((s) => (tsrBySession.get(s.id) ?? []).every((t) => t.points !== null));
     const allFinals = rows.every((t) => t.finalPoints !== null);
     // Finals must equal the points available for the season. Skipped when the
     // final does not cover the whole season: early-era years with unrecorded
@@ -159,7 +159,7 @@ async function main() {
     const finalCoversSeason = season.eraId === "early" ? allSessionsRecorded : season.standingsFinal;
     if (allFinals && finalCoversSeason) {
       const n = rows.length;
-      const available = seasonSessions.reduce((x, s) => x + ((n * (n - 1)) / 2) * s.matchesPerPairing * s.ptsPerMatch, 0);
+      const available = seasonSessions.filter((s) => s.played).reduce((x, s) => x + ((n * (n - 1)) / 2) * s.matchesPerPairing * s.ptsPerMatch, 0);
       const sum = rows.reduce((x, t) => x + (t.finalPoints ?? 0), 0);
       if (!eq0(sum, available)) {
         add({ key: `season_available_mismatch:${season.year}`, kind: "season_available_mismatch", severity: "error", seasonYear: season.year, message: `${season.year}: finals sum to ${fmt(sum)}; ${fmt(available)} points were available.` });

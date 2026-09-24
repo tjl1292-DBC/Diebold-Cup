@@ -227,6 +227,7 @@ if (wb.Sheets["Sessions"]) {
 
 // ---- Player Results ------------------------------------------------------------
 interface PlayerRow {
+  source: string;
   sheetRow: number;
   year: number;
   sessionLabel: string;
@@ -242,8 +243,8 @@ interface PlayerRow {
   note: string | null;
 }
 const playerRows: PlayerRow[] = [];
-{
-  const rows = sheetRows("Player Results");
+/** Ingest rows in the Player Results layout from any sheet (the workbook tab or a per-year file). */
+function ingestPlayerRows(rows: Row[], source: string) {
   const h = rows[0];
   const iYear = headerIndex(h, (x) => x === "year", "Player Results.Year");
   const iSession = headerIndex(h, (x) => x === "session", "Player Results.Session");
@@ -267,6 +268,7 @@ const playerRows: PlayerRow[] = [];
   rows.slice(1).forEach((r, idx) => {
     if (!isYear(r[iYear])) return;
     const sheetRow = idx + 2;
+    void source;
     const label = str(r[iSession]);
     if (!label) throw new Error(`Player Results row ${sheetRow}: blank Session`);
     const l = label.toLowerCase();
@@ -284,6 +286,7 @@ const playerRows: PlayerRow[] = [];
       else vs.set(c.clubId, num(r[c.i]));
     }
     playerRows.push({
+      source,
       sheetRow,
       year: r[iYear],
       sessionLabel: label,
@@ -299,6 +302,23 @@ const playerRows: PlayerRow[] = [];
       note: str(r[iNote]),
     });
   });
+}
+ingestPlayerRows(sheetRows("Player Results"), "Player Results");
+
+// Per-year files with the same columns, in data/source/seasons/ (csv or xlsx).
+// Add a year without touching the workbook: drop 2003.csv in and re-run.
+{
+  const dir = path.join(ROOT, "data/source/seasons");
+  if (fs.existsSync(dir)) {
+    for (const f of fs.readdirSync(dir).filter((x) => /\.(csv|xlsx)$/i.test(x)).sort()) {
+      const wbx = XLSX.readFile(path.join(dir, f), { cellDates: false });
+      const ws = wbx.Sheets[wbx.SheetNames.includes("Player Results") ? "Player Results" : wbx.SheetNames[0]];
+      const rows = XLSX.utils.sheet_to_json<Row>(ws, { header: 1, defval: null, raw: true });
+      const before = playerRows.length;
+      ingestPlayerRows(rows, f);
+      console.log(`  + ${f}: ${playerRows.length - before} player rows`);
+    }
+  }
 }
 
 // ---- Corrections (data/overrides/corrections.yaml) --------------------------------
@@ -628,7 +648,7 @@ for (const r of playerRows) {
     available: opponents.length * s.ptsPerMatch,
     totalDerived: derived,
     sheetNote: r.note,
-    sourceRef: `Player Results!${r.sheetRow}`,
+    sourceRef: `${r.source}!${r.sheetRow}`,
   });
   entryMeta.set(entryId, { year: r.year, sessionId, clubId: r.clubId, raw: r.players, sheetRow: r.sheetRow, format: s.format });
 

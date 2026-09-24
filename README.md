@@ -39,8 +39,10 @@ npm run db:studio       # browse the database
 
 ## Adding a season
 
-1. Add the rows to the workbook: Season History (one row per club) and Player
-   Results (one row per scoresheet line). Keep the same columns. A blank
+1. Add the rows. Either in the workbook (Season History: one row per club;
+   Player Results: one row per scoresheet line) or, for player rows, as a
+   per-year file in `data/source/seasons/` (`2003.csv` is the model: same
+   columns as Player Results). Per-year files are read after the workbook. A blank
    Total Pts is fine; the importer rebuilds it from the per-opponent columns
    and flags the row as `total_derived`.
 2. If a session used a different team size or points, add a

@@ -1,6 +1,6 @@
 # Import summary
 
-Generated 2026-09-20T02:21:35.588Z from `Diebold_Cup_Results_1945-2025.xlsx` (sha256 ab3d3fa63a87).
+Generated 2026-09-24T21:04:11.162Z from `Diebold_Cup_Results_1945-2025.xlsx` (sha256 ab3d3fa63a87).
 
 | Table | Rows |
 |---|---|
@@ -10,13 +10,13 @@ Generated 2026-09-20T02:21:35.588Z from `Diebold_Cup_Results_1945-2025.xlsx` (sh
 | sessions | 159 |
 | teamSessionResults | 633 |
 | teamSeasonResults | 159 |
-| players | 253 |
-| playerAliases | 521 |
-| entries | 1888 |
-| entryPlayers | 2528 |
-| entryOpponentPoints | 5664 |
+| players | 258 |
+| playerAliases | 529 |
+| entries | 1984 |
+| entryPlayers | 2656 |
+| entryOpponentPoints | 5952 |
 | awards | 16 |
-| dataFlags | 110 |
+| dataFlags | 115 |
 | documents | 1 |
 
 ## Seasons
@@ -81,7 +81,7 @@ Generated 2026-09-20T02:21:35.588Z from `Diebold_Cup_Results_1945-2025.xlsx` (sh
 | 2000 | middle | complete | 4 | 4/4 | 96 | Field Club | 5 |
 | 2001 | middle | complete | 4 | 4/4 | 96 | Oakmont |  |
 | 2002 | middle | team_totals_only | 4 | 0/4 | - | Oakmont | 5 |
-| 2003 | middle | team_totals_only | 4 | 0/4 | - | Field Club | 4 |
+| 2003 | middle | complete | 4 | 4/4 | 96 | Field Club | 9 |
 | 2004 | middle | team_totals_only | 4 | 0/4 | - | Oakmont | 4 |
 | 2005 | middle | team_totals_only | 4 | 0/4 | - | Oakmont | 4 |
 | 2006 | middle | team_totals_only | 4 | 0/4 | - | Oakmont |  |
@@ -105,19 +105,20 @@ Generated 2026-09-20T02:21:35.588Z from `Diebold_Cup_Results_1945-2025.xlsx` (sh
 | 2024 | modern | complete | 4 | 4/4 | 96 | Longue Vue | 1 |
 | 2025 | modern | complete | 4 | 4/4 | 96 | Oakmont | 4 |
 
-## Flags from the sheet (110)
+## Flags from the sheet (115)
 
 | Kind | Severity | Count |
 |---|---|---|
 | corrected | info | 4 |
+| identity_ambiguous | warning | 2 |
 | import_warning | warning | 1 |
 | season_note | info | 8 |
 | season_note | warning | 9 |
 | session_not_played | info | 1 |
-| sheet_note | info | 54 |
+| sheet_note | info | 60 |
 | sheet_note | warning | 1 |
 | venue_assumed | info | 1 |
-| venue_unknown | info | 31 |
+| venue_unknown | info | 28 |
 
 ### Warnings and errors
 
@@ -132,3 +133,5 @@ Generated 2026-09-20T02:21:35.588Z from `Diebold_Cup_Results_1945-2025.xlsx` (sh
 - [warning] season_note 2022   — Friday singles at Fox Chapel were rained out. The cup was decided on Saturday and Sunday, so the totals are the final standings.
 - [warning] season_note 2023   — The Sunday singles sheet is a half point short between the Field Club and Fox Chapel; the recorded finals carry it. Error on the original sheet.
 - [warning] sheet_note 2007 2007-1 2007-1-field-club-3 — Faint scan — low confidence
+- [warning] identity_ambiguous 2003 2003-3 2003-3-oakmont-2 — "Wagner" could be Rob Wagner or Chick Wagner or Corey Wagner or K. Wagner; assigned to Chick Wagner by season proximity.
+- [warning] identity_ambiguous 2003 2003-3 2003-3-oakmont-4 — "Wagner" could be Rob Wagner or Chick Wagner or Corey Wagner or K. Wagner; assigned to Chick Wagner by season proximity.

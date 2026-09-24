@@ -76,6 +76,7 @@ aliases:
   - { club: fox-chapel, name: "Bitar",    years: [2023, 2023], player: fox-chapel-scott-bitar-ii }
 
   # --- Oakmont -----------------------------------------------------------------
+  - { club: oakmont, name: "Chaz Wagner", years: [2003, 2003], player: oakmont-chick-wagner }   # 2003 Friday sheet; Chick is on the Saturday sheets, Chaz = Charles
   - { club: oakmont, name: "Bergman",    player: oakmont-brett-bergman }
   - { club: oakmont, name: "B. Bergman", player: oakmont-brett-bergman }
   - { club: oakmont, name: "Wagner",     years: [2007, 2008], player: oakmont-chick-wagner }

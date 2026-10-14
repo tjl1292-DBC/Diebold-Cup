@@ -126,8 +126,8 @@ export async function runTool(name: string, input: unknown): Promise<ToolResult>
       const tables: ToolTable[] = [
         {
           title: `${v.player.displayName} (${v.club.shortName}) · career`,
-          columns: ["Seasons", "Matches", "Points", "Available", "Share", "Singles matches", "Singles avg (of 9)", "Singles share", "Pairs share", "Best gross"],
-          rows: [[t.seasons, t.matches, fmtPts(t.points), fmtPts(t.available), fmtPct(t.points, t.available), t.singlesMatches, t.singlesMatches ? (t.singlesPoints / t.singlesMatches).toFixed(2) : null, fmtPct(t.singlesPoints, t.singlesAvailable), fmtPct(t.pairsPoints, t.pairsAvailable), v.bestGross[0]?.gross ?? null]],
+          columns: ["Seasons", "Matches", "Points", "Available", "Share", "Singles matches", "Singles avg (of 9)", "Singles share", "Pairs share", "Best gross", "Born"],
+          rows: [[t.seasons, t.matches, fmtPts(t.points), fmtPts(t.available), fmtPct(t.points, t.available), t.singlesMatches, t.singlesMatches ? (t.singlesPoints / t.singlesMatches).toFixed(2) : null, fmtPct(t.singlesPoints, t.singlesAvailable), fmtPct(t.pairsPoints, t.pairsAvailable), v.bestGross[0]?.gross ?? null, v.player.birthYear === null ? "not recorded" : `${v.player.birthYearApprox ? "c. " : ""}${v.player.birthYear}`]],
           href: `/players/${v.player.id}`,
         },
         {

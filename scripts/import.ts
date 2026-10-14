@@ -76,6 +76,7 @@ const clubsCfg = readJson<{ clubs: ClubCfg[] }>("data/config/clubs.json").clubs;
 const scoring = readJson<ScoringCfg>("data/config/scoring.json");
 const seasonsCfg = readJson<SeasonsCfg>("data/config/seasons.json");
 const overrides = readYaml<Overrides>("data/overrides/players.yaml");
+const birthdates = readYaml<{ players?: { player: string; born: string | number; approx?: boolean; source?: string }[] }>("data/overrides/birthdates.yaml").players ?? [];
 
 const clubByLabel = new Map<string, ClubCfg>();
 for (const c of clubsCfg) for (const l of c.sheetLabels) clubByLabel.set(l.toLowerCase(), c);
@@ -693,6 +694,27 @@ for (const id of resolved.identities) {
     note: id.note ?? null,
   });
   if (id.needsReview) addFlag({ kind: "identity_review", severity: "warning", playerId: id.id, message: `${displayNameFor(id)}: ${id.reviewNote}` });
+}
+// Birth dates from birthdates.yaml; a date set on one Player row is copied to
+// the same person's rows at other clubs.
+{
+  const byId = new Map(out.players.map((p) => [p.id, p]));
+  for (const b of birthdates) {
+    const p = byId.get(b.player);
+    if (!p) throw new Error(`birthdates.yaml names unknown player id "${b.player}".`);
+    const born = String(b.born);
+    const m = /^(\d{4})(?:-(\d{2})(?:-(\d{2}))?)?$/.exec(born);
+    if (!m) throw new Error(`birthdates.yaml: "${born}" for ${b.player} is not YYYY, YYYY-MM or YYYY-MM-DD.`);
+    p.birthDate = born;
+    p.birthYear = Number(m[1]);
+    p.birthYearApprox = !!b.approx;
+    p.birthSource = b.source ?? null;
+  }
+  for (const p of out.players) {
+    if (p.birthYear != null || !p.personId) continue;
+    const src = out.players.find((q) => q.personId === p.personId && q.birthYear != null);
+    if (src) Object.assign(p, { birthDate: src.birthDate, birthYear: src.birthYear, birthYearApprox: src.birthYearApprox, birthSource: src.birthSource });
+  }
 }
 const aliasAgg = new Map<string, Insert<"playerAliases">>();
 for (const t of tokens) {

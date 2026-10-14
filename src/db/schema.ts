@@ -182,6 +182,16 @@ export const players = sqliteTable(
     needsReview: integer("needs_review", { mode: "boolean" }).notNull().default(false),
     reviewNote: text("review_note"),
     note: text("note"), // free text from overrides, shown on the player page
+    /**
+     * From data/overrides/birthdates.yaml. birthDate keeps whatever precision
+     * the source gave ("1967-01-30", "1982-08", "1995"); birthYear is always
+     * set when birthDate is. birthYearApprox marks a year inferred from an
+     * age or a school class rather than a recorded date.
+     */
+    birthDate: text("birth_date"),
+    birthYear: integer("birth_year"),
+    birthYearApprox: integer("birth_year_approx", { mode: "boolean" }).notNull().default(false),
+    birthSource: text("birth_source"),
   },
   (t) => [index("players_club").on(t.clubId), index("players_surname").on(t.surname)],
 );

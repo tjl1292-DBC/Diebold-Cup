@@ -15,6 +15,13 @@
       "when": 1789870892971,
       "tag": "0001_session_played",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1792021703760,
+      "tag": "0002_player_birth",
+      "breakpoints": true
     }
   ]
 }

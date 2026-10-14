@@ -1,0 +1,141 @@
+# Player birth dates
+# =================
+# One entry per player id (see data/overrides/players.yaml for ids). Re-run
+# `npm run import` after editing. Players joined by a `people:` entry share a
+# date: set it on one row and the importer copies it to the others.
+#
+#   born:    "YYYY-MM-DD", "YYYY-MM" or "YYYY" - keep whatever precision the
+#            source actually gives.
+#   approx:  true when the year was inferred from an age or a school class
+#            rather than read from a record (shown as "c. 1995").
+#   source:  where it came from, in a few words.
+#
+# Dates were taken from the clubs' age rosters (08.15.25 Diebold Ages.xlsx)
+# on 14 Oct 2026; the rest were found in public college rosters, tour bios
+# and news reports the same day. Players on those rosters with no date and
+# nothing findable are listed at the bottom so nobody searches twice.
+
+players:
+  # --- from the club age rosters ------------------------------------------
+  - { player: oakmont-john-birmingham-jr,                born: "1967-01-30",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-spencer-mellon,                    born: "1991-09-23",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-robby-mazeski,                     born: "1993-11-20",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-justin-miller,                     born: "1993-01-13",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-ned-foster,                        born: "1966-08-23",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-win-smathers,                      born: "1968-03-09",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-chick-wagner,                      born: "1954-03-01",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-brock-bergman,                     born: "1984-05-26",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-steve-leone,                       born: "1976-05-24",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-paul-mazeski,                      born: "1963-04-29",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-rich-berglund,                     born: "1965-02-16",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-mark-bope,                         born: "1954-03-29",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-tom-delaney,                       born: "1972-12-15",     source: "Oakmont age roster, Aug 2025. Same date as Clint Guyaux (Fox Chapel) on the sheet; one is probably a copy error" }
+  - { player: oakmont-amby-bauer,                        born: "1974-09-21",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-steve-fuhrer,                      born: "1963-09-10",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-marty-slovonic,                    born: "1961-09-15",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-brett-bergman,                     born: "1986-06-16",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-malcolm-spatz,                     born: "1981-07-21",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-jim-bulger,                        born: "1974-09-25",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-scott-lamond,                      born: "1969-06-30",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-arne-thomas,                       born: "1966-04-02",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-nathan-sutherland,                 born: "1989-06-22",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-chuck-nettles,                     born: "1988-10-11",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-robbie-denove,                     born: "1992-04-23",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-a-hofmann,                         born: "1989-05-08",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-jimmy-meyers,                      born: "2000-06-01",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-andrew-friend,                     born: "1999-11-12",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-s-thomas,                          born: "1967-06-13",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-b-burke,                           born: "1972-03-23",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-tom-summers,                       born: "1989-09-26",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-curt-coulter,                      born: "1965-09-21",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-b-kittsley,                        born: "1974-12-07",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-mitch-mercer,                      born: "1987-07-21",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-d-donahue,                         born: "1979-05-01",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-luke-bumgardner,                   born: "1987-12-01",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-nathan-piatt,                      born: "2002-03-12",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-chad-warmbein,                     born: "1988-06-29",     source: "Oakmont age roster, Aug 2025" }
+  - { player: oakmont-ryan-cameron,                      born: "1987-01-18",     source: "Oakmont age roster, Aug 2025" }
+  - { player: field-club-jon-thomas,                     born: "1982-08",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-dave-weber,                     born: "1981-02",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-jm-ruscetti,                    born: "1983-06",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-tim-dodson,                     born: "1987-09",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-tommy-leech,                    born: "1992-12",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-pat-smith,                      born: "1967-05",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-gordy-opitz,                    born: "1957-09",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-pat-brady,                      born: "1983-04",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-denny-cestra,                   born: "1988-03",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-paul-curry,                     born: "1960-09",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-andrew-wallisch,                born: "1989-01",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-tucker-veenis,                  born: "1981-05",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-greg-jacobs,                    born: "1963-07",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-john-ifft,                      born: "1973-01",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-jack-katarincic,                born: "1998-04",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-john-marous-iii,                born: "1959-09",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-brendan-eisenbrandt,            born: "1989-09",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-will-mcmahon,                   born: "1997-09",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-derek-mousseau,                 born: "1983-10",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-s-mcinerney,                    born: "1997-10",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-jordan-dunsmore,                born: "1984-10",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-j-wallisch,                     born: "1957-07",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-dj-claus,                       born: "1983-06",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-g-thiele,                       born: "2002-02",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-andy-butler,                    born: "1995-12",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-graham-friday,                  born: "1994-05",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-jas-fuhrer,                     born: "2000-11",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-matt-mattioli,                  born: "2002-06",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-frank-fuhrer-iii,               born: "1958-12",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-wes-warden,                     born: "2002-08",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-ron-richards,                   born: "1963-02",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-patrick-sherry,                 born: "1986-08",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-kevin-obrien,                   born: "1995-04",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-k-mckamish,                     born: "1991-12",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-tom-welsh,                      born: "1954-07",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: fox-chapel-adam-hofmann,                   born: "1989-05-01",     source: "Fox Chapel age roster, Aug 2025" }
+  - { player: fox-chapel-vance-smith-iv,                 born: "1979-12-29",     source: "Fox Chapel age roster, Aug 2025" }
+  - { player: fox-chapel-bennett-smith,                  born: "1984-04-20",     source: "Fox Chapel age roster, Aug 2025" }
+  - { player: fox-chapel-henry-watson,                   born: "1984-01-01",     source: "Fox Chapel age roster, Aug 2025" }
+  - { player: fox-chapel-dave-lucas-jr,                  born: "1960-04-04",     source: "Fox Chapel age roster, Aug 2025" }
+  - { player: fox-chapel-mike-carlin,                    born: "1981-07-06",     source: "Fox Chapel age roster, Aug 2025. Same date as Eric Hellberg on the sheet; one is probably a copy error" }
+  - { player: fox-chapel-randy-mccombs,                  born: "1962-06-16",     source: "Fox Chapel age roster, Aug 2025" }
+  - { player: fox-chapel-john-mah,                       born: "1973-03-20",     source: "Fox Chapel age roster, Aug 2025" }
+  - { player: fox-chapel-brice-delaney,                  born: "2001-09-21",     source: "Fox Chapel age roster, Aug 2025" }
+  - { player: fox-chapel-eric-hellberg,                  born: "1981-07-06",     source: "Fox Chapel age roster, Aug 2025. Same date as Michael Carlin on the sheet; one is probably a copy error" }
+  - { player: fox-chapel-scott-bitar-ii,                 born: "2001-05-30",     source: "Fox Chapel age roster, Aug 2025" }
+  - { player: fox-chapel-scott-hellberg,                 born: "1988-10-01",     source: "Fox Chapel age roster, Aug 2025" }
+  - { player: fox-chapel-clint-guyaux,                   born: "1972-12-15",     source: "Fox Chapel age roster, Aug 2025. Same date as Tom Delaney (Oakmont) on the sheet; one is probably a copy error" }
+  - { player: fox-chapel-ben-fownes,                     born: "1992-11-04",     source: "Fox Chapel age roster, Aug 2025" }
+  - { player: fox-chapel-todd-green,                     born: "1989-10-31",     source: "Fox Chapel age roster, Aug 2025" }
+  - { player: fox-chapel-dave-kassling,                  born: "1983-08-10",     source: "Fox Chapel age roster, Aug 2025" }
+  - { player: fox-chapel-david-fuhrer-ii,                born: "2006-03-01",     source: "Fox Chapel age roster, Aug 2025" }
+  - { player: fox-chapel-o-delaney,                      born: "2004-03-13",     source: "Fox Chapel age roster, Aug 2025" }
+
+  # --- years derived from an age on the Oakmont / Fox Chapel rosters (Oct 2023)
+  - { player: oakmont-jim-sullivan-jr,                born: "1967", approx: true, source: "Oakmont age roster: 56 in Oct 2023" }
+  - { player: oakmont-keenan-hickton,                 born: "1995", approx: true, source: "Oakmont age roster: 28 in Oct 2023; Emory golf 2014-18 agrees" }
+  - { player: oakmont-corey-wagner,                   born: "1993", approx: true, source: "Oakmont age roster: 30 in Oct 2023" }
+  - { player: oakmont-a-lawson,                       born: "1993", approx: true, source: "Oakmont age roster: 30 in Oct 2023" }
+  - { player: oakmont-w-livingston,                   born: "2003", approx: true, source: "Oakmont age roster: 20 in Oct 2023" }
+  - { player: fox-chapel-rob-franklin,                born: "1974", approx: true, source: "Fox Chapel age roster: 49 in Oct 2023" }
+  - { player: fox-chapel-tom-reading,                 born: "1963", approx: true, source: "Fox Chapel age roster: 60 in Oct 2023" }
+
+  # --- found in public records ---------------------------------------------
+  - { player: oakmont-tommy-nettles,                  born: "1994-11-17", source: "PGA Tour player bio (Tom Nettles, McMurray PA)" }
+  - { player: oakmont-carter-pitcairn,                born: "2003-07-11", source: "High Point University men's golf roster" }
+  - { player: fox-chapel-greg-podufal,                born: "1992-06-26", source: "Georgetown men's golf roster" }
+  - { player: oakmont-rocco-salvitti,                 born: "2005", approx: true, source: "Central Catholic class of 2023, Notre Dame class of 2027; 18 on the Oakmont roster in Oct 2023" }
+  - { player: oakmont-nolan-shilling,                 born: "2005", approx: true, source: "Franklin Regional class of 2023; signed with Youngstown State for 2023-24" }
+  - { player: fox-chapel-barron-bitar,                born: "2010", approx: true, source: "Fox Chapel HS class of 2028 (MaxPreps); Tri-State PGA junior boys 11-14 in 2024" }
+  - { player: fox-chapel-aidan-burchianti,            born: "2004", approx: true, source: "SMU sophomore in spring 2025" }
+  - { player: fox-chapel-adam-lauer,                  born: "2003", approx: true, source: "Shady Side Academy junior in fall 2019; WPIAL 3A runner-up 2020" }
+  - { player: fox-chapel-tim-derdenger,               born: "1980", approx: true, source: "Age 45 in Poets & Quants profile, 2025" }
+  - { player: fox-chapel-jeremy-merich,               born: "1994", approx: true, source: "Peters Township class of 2012; Saint Francis golf 2012-16" }
+  - { player: fox-chapel-hunter-stanchak,             born: "1994", approx: true, source: "Peters Township HS golf 2010 alongside Tommy Nettles; uncertain, same name only" }
+  - { player: fox-chapel-jesse-coslov,                born: "1985", approx: true, source: "Shady Side Academy and GWU graduate, first job 2007; uncertain" }
+
+# Searched on 14 Oct 2026, nothing found: Jackson Fricke, Todd Berglund,
+# Ryan Banks, Henry McCrady, Ben Washburn, Sam Miclot, Jon Halpern,
+# Rob Ellsworth, Don Thomas, Mike Foster, Gus Schroeder, Jim Usher,
+# Dave Mengel, Andrew Begg (the 2022 Fox Chapel HS senior is too young to be
+# the 2013-15 player), Phil Beard, James Braham, Randy Russell, Lou Astorino,
+# Don Smith, Trey Kelly, Chris Rudolf, Patrick Walsh, Watson Barker,
+# TJ Cleveland.

@@ -26,10 +26,11 @@ export default async function PlayerPage({ params }: { params: Promise<Params> }
   const { player, club, totals } = v;
   const singlesAvg = totals.singlesMatches ? totals.singlesPoints / totals.singlesMatches : null;
   const span = player.firstSeason === player.lastSeason ? `${player.firstSeason}` : `${player.firstSeason}–${player.lastSeason}`;
+  const born = player.birthYear === null ? null : `born ${player.birthYearApprox ? "c. " : ""}${player.birthYear}`;
 
   return (
     <>
-      <PageTitle eyebrow={<ClubName club={club} short={false} />} title={player.displayName} lede={`${span} · ${totals.seasons} season${totals.seasons === 1 ? "" : "s"} · ${totals.matches} match${totals.matches === 1 ? "" : "es"}`}>
+      <PageTitle eyebrow={<ClubName club={club} short={false} />} title={player.displayName} lede={[span, `${totals.seasons} season${totals.seasons === 1 ? "" : "s"}`, `${totals.matches} match${totals.matches === 1 ? "" : "es"}`, born].filter(Boolean).join(" · ")}>
         {player.note && <p className="mt-2 text-sm text-ink-2">{player.note}</p>}
         {v.samePerson.length > 0 && (
           <p className="mt-2 text-sm text-ink-2">

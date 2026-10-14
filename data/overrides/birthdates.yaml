@@ -29,7 +29,7 @@ players:
   - { player: oakmont-paul-mazeski,                      born: "1963-04-29",     source: "Oakmont age roster, Aug 2025" }
   - { player: oakmont-rich-berglund,                     born: "1965-02-16",     source: "Oakmont age roster, Aug 2025" }
   - { player: oakmont-mark-bope,                         born: "1954-03-29",     source: "Oakmont age roster, Aug 2025" }
-  - { player: oakmont-tom-delaney,                       born: "1972-12-15",     source: "Oakmont age roster, Aug 2025. Same date as Clint Guyaux (Fox Chapel) on the sheet; one is probably a copy error" }
+  - { player: oakmont-tom-delaney,                       born: "1972-12-15",    source: "Oakmont age roster, Aug 2025; the roster's own age column (50 in Oct 2023) agrees. Clint Guyaux (Fox Chapel) carries the same date, probably pasted from this row" }
   - { player: oakmont-amby-bauer,                        born: "1974-09-21",     source: "Oakmont age roster, Aug 2025" }
   - { player: oakmont-steve-fuhrer,                      born: "1963-09-10",     source: "Oakmont age roster, Aug 2025" }
   - { player: oakmont-marty-slovonic,                    born: "1961-09-15",     source: "Oakmont age roster, Aug 2025" }
@@ -95,14 +95,14 @@ players:
   - { player: fox-chapel-bennett-smith,                  born: "1984-04-20",     source: "Fox Chapel age roster, Aug 2025" }
   - { player: fox-chapel-henry-watson,                   born: "1984-01-01",     source: "Fox Chapel age roster, Aug 2025" }
   - { player: fox-chapel-dave-lucas-jr,                  born: "1960-04-04",     source: "Fox Chapel age roster, Aug 2025" }
-  - { player: fox-chapel-mike-carlin,                    born: "1981-07-06",     source: "Fox Chapel age roster, Aug 2025. Same date as Eric Hellberg on the sheet; one is probably a copy error" }
+  - { player: fox-chapel-mike-carlin,                    born: "1981", approx: true, source: "Fox Chapel age roster, Aug 2025 shows 1981-07-06, identical to Eric Hellberg; one of the two is probably a copy error, so both are approximate until Fox Chapel confirms" }
   - { player: fox-chapel-randy-mccombs,                  born: "1962-06-16",     source: "Fox Chapel age roster, Aug 2025" }
   - { player: fox-chapel-john-mah,                       born: "1973-03-20",     source: "Fox Chapel age roster, Aug 2025" }
   - { player: fox-chapel-brice-delaney,                  born: "2001-09-21",     source: "Fox Chapel age roster, Aug 2025" }
-  - { player: fox-chapel-eric-hellberg,                  born: "1981-07-06",     source: "Fox Chapel age roster, Aug 2025. Same date as Michael Carlin on the sheet; one is probably a copy error" }
+  - { player: fox-chapel-eric-hellberg,                  born: "1981", approx: true, source: "Fox Chapel age roster, Aug 2025 shows 1981-07-06, identical to Michael Carlin; one of the two is probably a copy error, so both are approximate until Fox Chapel confirms" }
   - { player: fox-chapel-scott-bitar-ii,                 born: "2001-05-30",     source: "Fox Chapel age roster, Aug 2025" }
   - { player: fox-chapel-scott-hellberg,                 born: "1988-10-01",     source: "Fox Chapel age roster, Aug 2025" }
-  - { player: fox-chapel-clint-guyaux,                   born: "1972-12-15",     source: "Fox Chapel age roster, Aug 2025. Same date as Tom Delaney (Oakmont) on the sheet; one is probably a copy error" }
+  - { player: fox-chapel-clint-guyaux,                   born: "1972", approx: true, source: "Fox Chapel age roster, Aug 2025 shows 1972-12-15, identical to Tom Delaney (Oakmont) and probably pasted; year kept as approximate until Fox Chapel confirms" }
   - { player: fox-chapel-ben-fownes,                     born: "1992-11-04",     source: "Fox Chapel age roster, Aug 2025" }
   - { player: fox-chapel-todd-green,                     born: "1989-10-31",     source: "Fox Chapel age roster, Aug 2025" }
   - { player: fox-chapel-dave-kassling,                  born: "1983-08-10",     source: "Fox Chapel age roster, Aug 2025" }

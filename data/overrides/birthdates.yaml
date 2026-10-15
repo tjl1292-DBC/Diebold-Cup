@@ -153,7 +153,7 @@ players:
   - { player: field-club-will-maher,                 born: "1994", approx: true, source: "High school class of 2012 (Tommy Leech)" }
 
   # --- third pass, 14 Oct 2026: rough estimates, flagged as such
-  - { player: longue-vue-will-betts,                  born: "1994", approx: true, source: "A William Betts of Leechburg was a Hartford golf senior in 2015-16; if the same man he was 14 at his 2008 debut, so uncertain" }
+  - { player: longue-vue-will-betts,                  born: "1993", approx: true, source: "Fox Chapel HS freshman in 2007, then prep school, class of 2011/12 (Tommy Leech); Hartford golf senior 2015-16" }
   - { player: fox-chapel-james-braham,                born: "1977", approx: true, source: "Probably Jimmy Brahm, PGA, former Fox Chapel assistant pro: Slippery Rock graduate who entered the golf business in 2000; identity and year both uncertain" }
   - { player: fox-chapel-gus-schroeder,               born: "1970", approx: true, source: "Gus Schroeder Jr., Schroeder Industries president since 2005; rough estimate, father (also Gus, b. c. 1940) died c. 2000" }
 

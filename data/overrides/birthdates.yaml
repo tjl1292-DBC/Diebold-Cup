@@ -77,7 +77,7 @@ players:
   - { player: field-club-s-mcinerney,                    born: "1997-10",     source: "Field Club age roster, Aug 2025 (month and year only)" }
   - { player: field-club-jordan-dunsmore,                born: "1984-10",     source: "Field Club age roster, Aug 2025 (month and year only)" }
   - { player: field-club-j-wallisch,                     born: "1957-07",     source: "Field Club age roster, Aug 2025 (month and year only)" }
-  - { player: field-club-dj-claus,                       born: "1983-06",     source: "Field Club age roster, Aug 2025 (month and year only)" }
+  - { player: field-club-dj-claus,                   born: "1983-06-15",     source: "Field Club age roster, Aug 2025; full date from Tommy Leech, Oct 2026" }
   - { player: field-club-g-thiele,                       born: "2002-02",     source: "Field Club age roster, Aug 2025 (month and year only)" }
   - { player: field-club-andy-butler,                    born: "1995-12",     source: "Field Club age roster, Aug 2025 (month and year only)" }
   - { player: field-club-graham-friday,                  born: "1994-05",     source: "Field Club age roster, Aug 2025 (month and year only)" }
@@ -145,8 +145,15 @@ players:
   - { player: longue-vue-anthony-cordaro,             born: "1997", approx: true, source: "Pittsburgh entrant in 2014 U.S. Junior Amateur qualifying (under 19); uncertain by a year or two" }
   - { player: field-club-frank-fuhrer-iv,             born: "1999", approx: true, source: "Shady Side Academy senior in fall 2017" }
 
+  # --- Field Club, from Tommy Leech, 14 Oct 2026
+  - { player: field-club-dunlap,                     born: "1993-12-07",     source: "Tommy Leech, Oct 2026" }
+  - { player: field-club-dom-fazio,                  born: "1993-05-24",     source: "Tommy Leech, Oct 2026" }
+  - { player: field-club-banks,                      born: "1990", approx: true, source: "Age 36 in Oct 2026 (Tommy Leech)" }
+  - { player: field-club-r-frohlich,                 born: "2007", approx: true, source: "High school class of 2025 (Tommy Leech)" }
+  - { player: field-club-will-maher,                 born: "1994", approx: true, source: "High school class of 2012 (Tommy Leech)" }
+
 # Searched on 14 Oct 2026, nothing found: Jackson Fricke, Todd Berglund,
-# Ryan Banks, Henry McCrady, Ben Washburn, Sam Miclot, Jon Halpern,
+# Henry McCrady, Ben Washburn, Sam Miclot, Jon Halpern,
 # Rob Ellsworth, Don Thomas, Mike Foster, Gus Schroeder, Jim Usher,
 # Dave Mengel, Andrew Begg (the 2022 Fox Chapel HS senior is too young to be
 # the 2013-15 player), Phil Beard, James Braham, Randy Russell, Lou Astorino,
@@ -155,5 +162,5 @@ players:
 # Mike Gielarowski, Matt Fisch, Mark Vernallis, Will Betts, Nick Gordon,
 # Stu Lotz, Joe Cordaro, Al Beeken, Joe Bertucci, JJ Bush Jr., Amani
 # D'Ambrosio, Andrew Hodge, Chris Osborne, Kevin Heher, Shawn Will, Jim
-# McBride, Jim Crawford, Mike Colville, Jeff and Scott Troutman, Dom Fazio,
-# Damon Claus, Will Maher, JP Walsh, Ben Smith (Fox Chapel).
+# McBride, Jim Crawford, Mike Colville, Jeff and Scott Troutman,
+# Damon Claus, JP Walsh, Ben Smith (Fox Chapel).

@@ -53,6 +53,20 @@ players:
     surname: Kingsley
     note: "Written D. Kingsley (2000), Duke Kinsley (2001) and Kingsley (2008)."
 
+  - id: field-club-dunlap
+    club: field-club
+    displayName: Matt Dunlap
+    givenName: Matt
+    surname: Dunlap
+    note: "Surname only on the 2025 sheet; first name from Tommy Leech."
+
+  - id: field-club-banks
+    club: field-club
+    displayName: Ryan Banks
+    givenName: Ryan
+    surname: Banks
+    note: "Surname only on the 2025 sheet; first name from Tommy Leech."
+
 aliases:
   # --- spelling variants -----------------------------------------------------
   - { club: longue-vue, name: "Merk Vernallis", player: longue-vue-mark-vernallis }

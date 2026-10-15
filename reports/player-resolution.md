@@ -1,6 +1,6 @@
 # Player resolution report
 
-Generated 2026-10-15T00:10:21.440Z from `Diebold_Cup_Results_1945-2025.xlsx` (sha256 ab3d3fa63a87).
+Generated 2026-10-15T00:19:48.072Z from `Diebold_Cup_Results_1945-2025.xlsx` (sha256 ab3d3fa63a87).
 
 ## Summary
 
@@ -11,11 +11,11 @@ Generated 2026-10-15T00:10:21.440Z from `Diebold_Cup_Results_1945-2025.xlsx` (sh
 | method: exact_full_name | 1550 |
 | method: initial_by_year | 4 |
 | method: initial_single | 652 |
-| method: new_identity | 47 |
+| method: new_identity | 45 |
 | method: override | 79 |
 | method: suffix_merge | 97 |
 | method: surname_by_year | 33 |
-| method: surname_single | 194 |
+| method: surname_single | 196 |
 | confidence: high | 2522 |
 | confidence: medium | 132 |
 | confidence: low | 2 |
@@ -91,10 +91,8 @@ A name written without a suffix, merged into the only suffixed player of that na
 - "Scotty Bitar" x6 → Scott Bitar II (fox-chapel-scott-bitar-ii, 2017-2025, 32 rows)
 - "Davey Fuhrer" x1 → David Fuhrer II (fox-chapel-david-fuhrer-ii, 2021-2025, 13 rows)
 
-## Players with no first name on any sheet (47)
+## Players with no first name on any sheet (45)
 
-- field-club: **Banks** (field-club-banks) 2025-2025, 1 rows — written as Banks
-- field-club: **Dunlap** (field-club-dunlap) 2025-2025, 1 rows — written as Dunlap
 - field-club: **Fisher** (field-club-fisher) 2008-2008, 1 rows — written as Fisher
 - field-club: **R. Frohlich** (field-club-r-frohlich) 2025-2025, 1 rows — written as Frohlich
 - field-club: **S. McInerney** (field-club-s-mcinerney) 2016-2016, 1 rows — written as McInerney
@@ -163,7 +161,7 @@ One letter apart. Likely a transcription or handwriting variant; add an alias ru
 
 | Player | id | Seasons | Rows | Written as |
 |---|---|---|---|---|
-| Banks | `field-club-banks` | 2025-2025 | 1 | Banks (1) |
+| Ryan Banks | `field-club-banks` | 2025-2025 | 1 | Banks (1) |
 | Pat Brady | `field-club-pat-brady` | 2000-2021 | 18 | Pat Brady (10), P. Brady (6), Brady (2) |
 | Andy Butler | `field-club-andy-butler` | 2018-2021 | 16 | A. Butler (9), Andy Butler (5), Butler (2) |
 | Denny Cestra | `field-club-denny-cestra` | 2013-2014 | 3 | D. Cestra (2), Denny Cestra (1) |
@@ -174,7 +172,7 @@ One letter apart. Likely a transcription or handwriting variant; add an alias ru
 | Tim Dodson | `field-club-tim-dodson` | 2008-2023 | 16 | Tim Dodson (9), T. Dodson (6), Dodson (1) |
 | Dan Donahue | `field-club-dan-donahue` | 2010-2010 | 3 | Dan Donahue (3) |
 | Greg Donahue | `field-club-greg-donahue` | 2000-2003 | 7 | Greg Donahue (7) |
-| Dunlap | `field-club-dunlap` | 2025-2025 | 1 | Dunlap (1) |
+| Matt Dunlap | `field-club-dunlap` | 2025-2025 | 1 | Dunlap (1) |
 | Jordan Dunsmore | `field-club-jordan-dunsmore` | 2016-2021 | 8 | J. Dunsmore (4), Jordan Dunsmore (3), Dunsmore (1) |
 | Brendan Eisenbrandt | `field-club-brendan-eisenbrandt` | 2007-2014 | 6 | Brendan Eisenbrandt (4), B. Eisenbrandt (2) |
 | Dom Fazio | `field-club-dom-fazio` | 2024-2025 | 4 | Dom Fazio (4) |

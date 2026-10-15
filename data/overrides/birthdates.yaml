@@ -152,15 +152,23 @@ players:
   - { player: field-club-r-frohlich,                 born: "2007", approx: true, source: "High school class of 2025 (Tommy Leech)" }
   - { player: field-club-will-maher,                 born: "1994", approx: true, source: "High school class of 2012 (Tommy Leech)" }
 
+  # --- third pass, 14 Oct 2026: rough estimates, flagged as such
+  - { player: longue-vue-will-betts,                  born: "1994", approx: true, source: "A William Betts of Leechburg was a Hartford golf senior in 2015-16; if the same man he was 14 at his 2008 debut, so uncertain" }
+  - { player: fox-chapel-james-braham,                born: "1977", approx: true, source: "Probably Jimmy Brahm, PGA, former Fox Chapel assistant pro: Slippery Rock graduate who entered the golf business in 2000; identity and year both uncertain" }
+  - { player: fox-chapel-gus-schroeder,               born: "1970", approx: true, source: "Gus Schroeder Jr., Schroeder Industries president since 2005; rough estimate, father (also Gus, b. c. 1940) died c. 2000" }
+
 # Searched on 14 Oct 2026, nothing found: Jackson Fricke, Todd Berglund,
 # Henry McCrady, Ben Washburn, Sam Miclot, Jon Halpern,
-# Rob Ellsworth, Don Thomas, Mike Foster, Gus Schroeder, Jim Usher,
+# Rob Ellsworth, Don Thomas, Mike Foster, Jim Usher,
 # Dave Mengel, Andrew Begg (the 2022 Fox Chapel HS senior is too young to be
-# the 2013-15 player), Phil Beard, James Braham, Randy Russell, Lou Astorino,
+# the 2013-15 player), Phil Beard, Randy Russell, Lou Astorino,
 # Don Smith, Trey Kelly, Chris Rudolf, Patrick Walsh, Watson Barker,
 # TJ Cleveland. Second pass, same day, also nothing: Evan Ruhling, Derek Evans,
-# Mike Gielarowski, Matt Fisch, Mark Vernallis, Will Betts, Nick Gordon,
+# Mike Gielarowski, Matt Fisch (older brother of Pitt's Aidan Fisch, b. 2000),
+# Mark Vernallis, Nick Gordon,
 # Stu Lotz, Joe Cordaro, Al Beeken, Joe Bertucci, JJ Bush Jr., Amani
 # D'Ambrosio, Andrew Hodge, Chris Osborne, Kevin Heher, Shawn Will, Jim
 # McBride, Jim Crawford, Mike Colville, Jeff and Scott Troutman,
-# Damon Claus, JP Walsh, Ben Smith (Fox Chapel).
+# Damon Claus, JP Walsh, Ben Smith (Fox Chapel). A third pass over high-school
+# and college sports sites (MaxPreps, Hudl, Trib HSSN, WPIAL, team rosters)
+# added nothing for any of these.

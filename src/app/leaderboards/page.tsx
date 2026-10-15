@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getStore, careerRows, lowRounds, partnershipRows, fmtPts, fmtPct, pct, ERA_LABEL } from "@/lib/data";
+import { getStore, careerRows, lowRounds, partnershipRows, rosterAges, playerSeasonAges, fmtPts, fmtPct, fmtAge, fmtApprox, pct, ERA_LABEL, type PlayerSeasonAge } from "@/lib/data";
 import { PageTitle, Section, ClubName, PlayerName, SeasonLink } from "@/components/ui";
 
 export const metadata: Metadata = { title: "Leaderboards" };
@@ -22,6 +22,12 @@ export default async function LeaderboardsPage({ searchParams }: { searchParams:
   const byAppearances = [...rows].sort((a, b) => b.seasons - a.seasons || b.matches - a.matches).slice(0, 25);
   const lows = lowRounds(s, filter, 25);
   const pairs = partnershipRows(s, filter).filter((p) => p.times >= 3).sort((a, b) => pct(b.points, b.available) - pct(a.points, a.available) || b.times - a.times).slice(0, 25);
+  const ages = rosterAges(s, filter).sort((a, b) => b.year - a.year || a.club.sortOrder - b.club.sortOrder);
+  const ageSeasons = ages.filter((r) => r.withYear > 0);
+  const knownAges = playerSeasonAges(s, filter);
+  const youngest = knownAges.slice(0, 15);
+  const oldest = [...knownAges].reverse().slice(0, 15);
+  const coverage = { players: ages.reduce((t, r) => t + r.players, 0), withYear: ages.reduce((t, r) => t + r.withYear, 0), approx: ages.reduce((t, r) => t + r.approx, 0) };
   const qs = (patch: Partial<Search>) => {
     const p = new URLSearchParams();
     const next = { club: club ?? "", era: era ?? "", min: String(minMatches), ...patch };
@@ -222,8 +228,107 @@ export default async function LeaderboardsPage({ searchParams }: { searchParams:
             </tbody>
           </Board>
         </Section>
+
+        <Section title="Youngest player-seasons" aside={`${scope} · age in the season year`}>
+          <AgeBoard rows={youngest} />
+        </Section>
+
+        <Section title="Oldest player-seasons" aside={`${scope} · age in the season year`}>
+          <AgeBoard rows={oldest} />
+        </Section>
+
+        <div className="lg:col-span-2">
+          <Section id="ages" title="Roster age by season" aside={`${scope} · birth years known for ${coverage.withYear} of ${coverage.players} player-seasons${coverage.approx ? `, ${coverage.approx} approximate` : ""}`}>
+            <p className="mb-3 text-sm text-ink-2">
+              Age is the season year minus the birth year. An average is only as good as its coverage, so each row says how many of the club&apos;s players that year have a birth year on file; rows with fewer than half are
+              marked. &ldquo;c.&rdquo; marks a year inferred from an age roster or a school class rather than a recorded date. Under 25 and under 30 count only players with a birth year.
+            </p>
+            {ageSeasons.length === 0 ? (
+              <p className="rounded border border-dashed border-line px-4 py-6 text-center text-sm text-ink-2">No birth years on file for this selection.</p>
+            ) : (
+              <Board>
+                <thead>
+                  <tr>
+                    <th>Year</th>
+                    <th>Club</th>
+                    <th className="r">Players</th>
+                    <th className="r">With birth year</th>
+                    <th className="r">Avg age</th>
+                    <th className="r">Under 25</th>
+                    <th className="r">Under 30</th>
+                    <th>Youngest</th>
+                    <th>Oldest</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {ages.map((r) => {
+                    const thin = r.withYear * 2 < r.players;
+                    return (
+                      <tr key={`${r.year}-${r.club.id}`} className={r.withYear === 0 ? "text-ink-3" : ""}>
+                        <td>
+                          <SeasonLink season={r.year} />
+                        </td>
+                        <td>
+                          <ClubName club={r.club} />
+                        </td>
+                        <td className="r">{r.players}</td>
+                        <td className={`r ${thin ? "text-brass" : "text-ink-2"}`} title={thin ? "Fewer than half the roster has a birth year on file" : undefined}>
+                          {r.withYear}
+                          {r.approx > 0 && <span className="text-ink-3 text-xs"> ({r.approx} c.)</span>}
+                        </td>
+                        <td className="r font-semibold">{fmtAge(r.avgAge)}</td>
+                        <td className="r">{r.withYear ? r.under25 : "–"}</td>
+                        <td className="r">{r.withYear ? r.under30 : "–"}</td>
+                        <td className="text-sm">{r.youngest && <AgeName a={r.youngest} />}</td>
+                        <td className="text-sm">{r.oldest && <AgeName a={r.oldest} />}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </Board>
+            )}
+          </Section>
+        </div>
       </div>
     </>
+  );
+}
+
+function AgeName({ a }: { a: PlayerSeasonAge }) {
+  return (
+    <>
+      <PlayerName player={a.player} /> <span className="num text-ink-2">{fmtApprox(a.age, a.approx)}</span>
+    </>
+  );
+}
+
+function AgeBoard({ rows }: { rows: PlayerSeasonAge[] }) {
+  if (!rows.length) return <p className="rounded border border-dashed border-line px-4 py-6 text-center text-sm text-ink-2">No birth years on file for this selection.</p>;
+  return (
+    <Board>
+      <thead>
+        <tr>
+          <th className="r">Age</th>
+          <th>Player</th>
+          <th>Season</th>
+          <th className="r">Born</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((a) => (
+          <tr key={`${a.player.id}-${a.year}`}>
+            <td className="r font-semibold text-lg">{fmtApprox(a.age, a.approx)}</td>
+            <td>
+              <PlayerName player={a.player} /> <span className="text-ink-3 text-sm"><ClubName club={a.club} link={false} /></span>
+            </td>
+            <td className="text-ink-2 text-sm">
+              <SeasonLink season={a.year} />
+            </td>
+            <td className="r text-ink-2 num">{fmtApprox(a.player.birthYear!, a.approx)}</td>
+          </tr>
+        ))}
+      </tbody>
+    </Board>
   );
 }
 

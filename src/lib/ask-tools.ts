@@ -7,7 +7,7 @@
  * tool call before any figure is stated, and the UI shows the rows returned.
  */
 import type Anthropic from "@anthropic-ai/sdk";
-import { getStore, seasonView, playerView, allTimeStandings, careerRows, lowRounds, partnershipRows, search, clubView, fmtPts, fmtPct, pct, ERA_LABEL, type Store } from "./data";
+import { getStore, seasonView, playerView, allTimeStandings, careerRows, lowRounds, partnershipRows, rosterAges, playerSeasonAges, clubAgeSummary, search, clubView, fmtPts, fmtPct, fmtAge, fmtApprox, pct, ERA_LABEL, type Store } from "./data";
 
 export interface ToolTable {
   title: string;
@@ -92,6 +92,23 @@ export const TOOLS: Anthropic.Tool[] = [
         limit: { type: "integer", description: "Rows to return, max 50" },
       },
       required: ["metric", "club_id", "era", "min_matches", "limit"],
+      additionalProperties: false,
+    },
+  },
+  {
+    name: "roster_ages",
+    description:
+      "Roster age by season and club: average age, players under 25 and under 30, youngest and oldest, with how many of the club's players that season have a birth year on file. Age is season year minus birth year. Birth years are known for fewer than half of all players (almost none at Longue Vue), so always quote the coverage next to an average. Use extremes for 'youngest ever' / 'oldest ever' questions.",
+    strict: true,
+    input_schema: {
+      type: "object",
+      properties: {
+        club_id: { type: "string", enum: ["all", "field-club", "fox-chapel", "oakmont", "longue-vue"], description: "Restrict to one club, or 'all'" },
+        year: { type: "integer", description: "One season year, or 0 for every season" },
+        extremes: { type: "string", enum: ["none", "youngest", "oldest", "both"], description: "Also list the youngest and/or oldest individual player-seasons" },
+        limit: { type: "integer", description: "Rows per extremes table, max 50" },
+      },
+      required: ["club_id", "year", "extremes", "limit"],
       additionalProperties: false,
     },
   },
@@ -267,6 +284,43 @@ export async function runTool(name: string, input: unknown): Promise<ToolResult>
         ],
       };
     }
+    case "roster_ages": {
+      const club = typeof a.club_id === "string" && a.club_id !== "all" ? a.club_id : null;
+      const year = Number(a.year) || 0;
+      const extremes = String(a.extremes ?? "none");
+      const limit = Math.min(50, Math.max(1, Number(a.limit) || 10));
+      const f = { club };
+      const rows = rosterAges(s, f).filter((r) => !year || r.year === year).sort((x, y) => y.year - x.year || x.club.sortOrder - y.club.sortOrder);
+      const scope = `${club ? s.clubById.get(club)!.shortName : "all clubs"}${year ? `, ${year}` : ""}`;
+      if (!rows.length) return { summary: `No player rows for ${scope}, so no roster to age.`, tables: [], notes: ["Player rows survive for 2000, 2001 and 2007–2025 except 2011."] };
+      const ageRow = (x: ReturnType<typeof playerSeasonAges>[number]) => [x.player.id, x.player.displayName, x.club.shortName, x.year, fmtApprox(x.age, x.approx), fmtApprox(x.player.birthYear!, x.approx)];
+      const tables: ToolTable[] = [
+        {
+          title: `Roster age by season · ${scope}`,
+          columns: ["Year", "Club", "Players", "With birth year", "Approximate", "Avg age", "Under 25", "Under 30", "Youngest", "Oldest"],
+          rows: rows.map((r) => [r.year, r.club.shortName, r.players, r.withYear, r.approx, r.avgAge === null ? null : fmtAge(r.avgAge), r.withYear ? r.under25 : null, r.withYear ? r.under30 : null, r.youngest ? `${r.youngest.player.displayName} (${fmtApprox(r.youngest.age, r.youngest.approx)})` : null, r.oldest ? `${r.oldest.player.displayName} (${fmtApprox(r.oldest.age, r.oldest.approx)})` : null]),
+          href: `/leaderboards?${club ? `club=${club}` : ""}#ages`,
+        },
+      ];
+      const known = playerSeasonAges(s, f).filter((x) => !year || x.year === year);
+      if ((extremes === "youngest" || extremes === "both") && known.length) tables.push({ title: `Youngest player-seasons · ${scope}`, columns: ["player_id", "Player", "Club", "Year", "Age", "Born"], rows: known.slice(0, limit).map(ageRow) });
+      if ((extremes === "oldest" || extremes === "both") && known.length) tables.push({ title: `Oldest player-seasons · ${scope}`, columns: ["player_id", "Player", "Club", "Year", "Age", "Born"], rows: [...known].reverse().slice(0, limit).map(ageRow) });
+      const players = rows.reduce((t, r) => t + r.players, 0);
+      const withYear = rows.reduce((t, r) => t + r.withYear, 0);
+      const approx = rows.reduce((t, r) => t + r.approx, 0);
+      const notes = [
+        `Age is season year minus birth year. "c." marks a birth year inferred from an age roster or school class. Under 25 and under 30 count only players with a birth year.`,
+        `Coverage for ${scope}: ${withYear} of ${players} player-seasons have a birth year${approx ? ` (${approx} approximate)` : ""}. A row with few birth years is not a reliable average; say so.`,
+        ...s.clubs.filter((c) => c.id !== "allegheny" && (!club || c.id === club)).map((c) => clubAgeSummary(s, c.id)!).map((x) => `${x.club.shortName}: birth years on file for ${x.playersWithYear} of ${x.playersTotal} players${x.avgAge === null ? ", too few for an average" : `; all-time average ${fmtAge(x.avgAge)} over ${x.firstYear}–${x.lastYear}`}.`),
+      ];
+      const covered = rows.filter((r) => r.withYear > 0);
+      const summary = year && club && rows.length === 1
+        ? rows[0].withYear
+          ? `${scope}: average age ${fmtAge(rows[0].avgAge)} from ${rows[0].withYear} of ${rows[0].players} players; ${rows[0].under25} under 25, ${rows[0].under30} under 30.`
+          : `${scope}: no birth years on file for the ${rows[0].players} players that year.`
+        : `Roster ages for ${scope}: ${covered.length} of ${rows.length} club-seasons have at least one birth year on file.`;
+      return { summary, tables, notes };
+    }
     default:
       return { summary: `Unknown tool ${name}.`, tables: [] };
   }
@@ -282,6 +336,8 @@ Hard rules:
 - Raw points are not comparable across eras: pairs matches were worth 6 points per opponent through 2007, 3 in 2008-2014 and 4 from 2015. For any "best ever" or cross-era comparison use share of available points or singles average, and say so in a few words.
 - Ties for first are engraved for both clubs. 1953 was tied and waived to the Field Club.
 - Mention a caveat the tools return (sheet error, unconfirmed name, missing session) only when it bears on the answer.
+- The record is more than the scoresheets: birth years are on file for about 110 players, mostly those who played 2013-2025 at Oakmont, the Field Club and Fox Chapel, taken from the clubs' age rosters and a few public records. player_record shows a player's "Born" column; roster_ages covers a club or season. Asked whether birth years or ages exist, say yes and what is covered (call roster_ages for the figures); never say the record has no dates of birth.
+- Ages come from roster_ages: age is season year minus birth year, and birth years are on file for fewer than half the players. Quote the coverage with any average ("36.9, from 13 of 13 players"), keep the "c." on an approximate age or birth year, and when a club or year has no birth years say the record cannot answer.
 
 Style:
 - Lead with the answer in the first sentence. Two to four sentences total unless the reader asked for a list; for a list, a short numbered list is fine.

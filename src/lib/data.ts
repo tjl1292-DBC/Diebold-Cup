@@ -630,3 +630,142 @@ export function search(s: Store, q: string, limit = 30): SearchResult {
   const clubs = s.clubs.filter((c) => norm(c.name).includes(nq) || norm(c.shortName).includes(nq) || norm(c.abbreviation) === nq);
   return { players: players.slice(0, limit), seasons, clubs };
 }
+
+// ---------------------------------------------------------------------------
+// Roster ages
+// ---------------------------------------------------------------------------
+//
+// Age is season year minus birth year: the age a player turned (or had
+// turned) in the calendar year of the Cup, which is how the clubs' own age
+// rosters count. Birth years come from data/overrides/birthdates.yaml and
+// cover fewer than half the players, so every figure here carries the count
+// of players it was computed from and the count it was not.
+
+export interface PlayerSeasonAge {
+  player: Player;
+  club: Club;
+  year: number;
+  age: number;
+  /** Birth year was inferred (from an age or a school class), so the age is "c.". */
+  approx: boolean;
+}
+
+export interface RosterAgeRow {
+  year: number;
+  club: Club;
+  /** Distinct players on the club's sheets that season. */
+  players: number;
+  /** Of those, how many have a birth year. */
+  withYear: number;
+  /** Of those with a birth year, how many are approximate. */
+  approx: number;
+  avgAge: number | null;
+  under25: number;
+  under30: number;
+  youngest: PlayerSeasonAge | null;
+  oldest: PlayerSeasonAge | null;
+  /** Every known age that season, youngest first. */
+  ages: PlayerSeasonAge[];
+}
+
+/** One line per (season, club) with player rows, oldest season first. */
+export function rosterAges(s: Store, f: LeaderboardFilter = {}): RosterAgeRow[] {
+  const roster = new Map<string, { year: number; club: Club; ids: Set<string> }>();
+  for (const e of s.entries) {
+    if (f.club && e.clubId !== f.club) continue;
+    const year = s.sessionById.get(e.sessionId)!.seasonYear;
+    if (!inEra(s, year, f.era)) continue;
+    const key = `${year}|${e.clubId}`;
+    const r = roster.get(key) ?? { year, club: s.clubById.get(e.clubId)!, ids: new Set<string>() };
+    for (const ep of s.entryPlayersByEntry.get(e.id) ?? []) r.ids.add(ep.playerId);
+    roster.set(key, r);
+  }
+  return [...roster.values()]
+    .map(({ year, club, ids }) => {
+      const ages: PlayerSeasonAge[] = [];
+      for (const id of ids) {
+        const p = s.playerById.get(id)!;
+        if (p.birthYear === null) continue;
+        ages.push({ player: p, club, year, age: year - p.birthYear, approx: p.birthYearApprox });
+      }
+      ages.sort((a, b) => a.age - b.age || a.player.sortName.localeCompare(b.player.sortName));
+      return {
+        year,
+        club,
+        players: ids.size,
+        withYear: ages.length,
+        approx: ages.filter((a) => a.approx).length,
+        avgAge: ages.length ? ages.reduce((t, a) => t + a.age, 0) / ages.length : null,
+        under25: ages.filter((a) => a.age < 25).length,
+        under30: ages.filter((a) => a.age < 30).length,
+        youngest: ages[0] ?? null,
+        oldest: ages.length ? ages[ages.length - 1] : null,
+        ages,
+      };
+    })
+    .sort((a, b) => a.year - b.year || a.club.sortOrder - b.club.sortOrder);
+}
+
+/** Every player-season with a known age (a player counts once per season), youngest first. */
+export function playerSeasonAges(s: Store, f: LeaderboardFilter = {}): PlayerSeasonAge[] {
+  return rosterAges(s, f)
+    .flatMap((r) => r.ages)
+    .sort((a, b) => a.age - b.age || a.year - b.year || a.player.sortName.localeCompare(b.player.sortName));
+}
+
+export interface ClubAgeSummary {
+  club: Club;
+  /** Player-seasons (a player counts once per season he appeared). */
+  playerSeasons: number;
+  withYear: number;
+  approx: number;
+  /** Mean age over player-seasons with a birth year; null when fewer than MIN_AGE_SAMPLE. */
+  avgAge: number | null;
+  under25: number;
+  under30: number;
+  /** First and last season that contributed at least one known age. */
+  firstYear: number | null;
+  lastYear: number | null;
+  /** Distinct players on the club's sheets, and how many of them have a birth year. */
+  playersTotal: number;
+  playersWithYear: number;
+  youngest: PlayerSeasonAge | null;
+  oldest: PlayerSeasonAge | null;
+}
+
+/** Fewer known ages than this and an average is not worth printing. */
+export const MIN_AGE_SAMPLE = 5;
+
+export function clubAgeSummary(s: Store, clubId: string): ClubAgeSummary | null {
+  const club = s.clubById.get(clubId);
+  if (!club) return null;
+  const rows = rosterAges(s, { club: clubId });
+  const ages = playerSeasonAges(s, { club: clubId });
+  const played = new Set<string>();
+  for (const e of s.entries) if (e.clubId === clubId) for (const ep of s.entryPlayersByEntry.get(e.id) ?? []) played.add(ep.playerId);
+  const covered = rows.filter((r) => r.withYear > 0);
+  return {
+    club,
+    playerSeasons: rows.reduce((t, r) => t + r.players, 0),
+    withYear: ages.length,
+    approx: ages.filter((a) => a.approx).length,
+    avgAge: ages.length >= MIN_AGE_SAMPLE ? ages.reduce((t, a) => t + a.age, 0) / ages.length : null,
+    under25: ages.filter((a) => a.age < 25).length,
+    under30: ages.filter((a) => a.age < 30).length,
+    firstYear: covered.length ? covered[0].year : null,
+    lastYear: covered.length ? covered[covered.length - 1].year : null,
+    playersTotal: played.size,
+    playersWithYear: [...played].filter((id) => s.playerById.get(id)!.birthYear !== null).length,
+    youngest: ages[0] ?? null,
+    oldest: ages.length ? ages[ages.length - 1] : null,
+  };
+}
+
+/** "c. 1995" for an inferred year, "1995" otherwise; same for an age. */
+export function fmtApprox(n: number, approx: boolean): string {
+  return `${approx ? "c. " : ""}${n}`;
+}
+
+export function fmtAge(n: number | null): string {
+  return n === null ? "–" : n.toFixed(1);
+}

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getStore, clubView, fmtPts, fmtPct, ERA_LABEL } from "@/lib/data";
+import { getStore, clubView, clubAgeSummary, fmtPts, fmtPct, fmtAge, fmtApprox, ERA_LABEL } from "@/lib/data";
 import { PageTitle, Section, Stat, ClubName, SeasonLink, Place, Pill, STATUS_LABEL } from "@/components/ui";
 
 type Params = { slug: string };
@@ -23,6 +23,7 @@ export default async function ClubPage({ params }: { params: Promise<Params> }) 
   const v = clubView(s, slug);
   if (!v) notFound();
   const { club, standing } = v;
+  const age = clubAgeSummary(s, slug);
   return (
     <>
       <PageTitle
@@ -43,6 +44,30 @@ export default async function ClubPage({ params }: { params: Promise<Params> }) 
         <Stat label="Points won" value={fmtPct(standing.points, standing.available)} sub="of available, all recorded sessions" />
         <Stat label="Players" value={v.rosterByEra.reduce((a, r) => a + r.players.length, 0)} sub="on surviving sheets" />
       </div>
+      {age && age.playerSeasons > 0 && (
+        <p className="mt-3 text-sm text-ink-2">
+          {age.avgAge === null ? (
+            <>
+              Average roster age: not enough birth years on file ({age.playersWithYear} of {age.playersTotal} players).
+            </>
+          ) : (
+            <>
+              Average roster age <span className="num font-semibold text-ink">{fmtAge(age.avgAge)}</span> over {age.firstYear === age.lastYear ? age.firstYear : `${age.firstYear}–${age.lastYear}`}, from {age.withYear} of {age.playerSeasons} player-seasons with a birth year on file
+              {age.approx > 0 && <>, {age.approx} approximate</>}. {age.under25} player-seasons under 25, {age.under30} under 30.
+              {age.youngest && age.oldest && (
+                <>
+                  {" "}
+                  Youngest <Link href={`/players/${age.youngest.player.id}`} className="hover:text-accent">{age.youngest.player.displayName}</Link>, {fmtApprox(age.youngest.age, age.youngest.approx)} in {age.youngest.year}; oldest{" "}
+                  <Link href={`/players/${age.oldest.player.id}`} className="hover:text-accent">{age.oldest.player.displayName}</Link>, {fmtApprox(age.oldest.age, age.oldest.approx)} in {age.oldest.year}.
+                </>
+              )}
+            </>
+          )}{" "}
+          <Link href={`/leaderboards?club=${club.id}#ages`} className="text-accent">
+            Season by season →
+          </Link>
+        </p>
+      )}
 
       <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
         <Section title="Season by season">

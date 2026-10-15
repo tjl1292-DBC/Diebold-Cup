@@ -193,11 +193,18 @@ players:
   - { player: longue-vue-jeff-troutman,              band: "50+", asOf: 2026, source: "Tommy Leech, Oct 2026" }
   - { player: longue-vue-scott-troutman,             band: "50+", asOf: 2026, source: "Tommy Leech, Oct 2026" }
 
+  # --- from college graduation years given by Tommy Leech, 14 Oct 2026 (born = graduation - 22)
+  - { player: fox-chapel-l-astorino,                 born: "1975", approx: true, source: "Graduated college 1997 (Tommy Leech)" }
+  - { player: fox-chapel-w-barker,                   born: "1977", approx: true, source: "Graduated college 1999 (Tommy Leech)" }
+  - { player: fox-chapel-t-kelly,                    born: "1999", approx: true, source: "Graduated college 2021 (Tommy Leech)" }
+  - { player: fox-chapel-c-rudolf,                   born: "1988", approx: true, source: "Graduated college 2010 (Tommy Leech)" }
+  - { player: fox-chapel-r-russell,                  born: "1969", approx: true, source: "Graduated college 1991 (Tommy Leech)" }
+  - { player: oakmont-fricke,                        born: "2003", approx: true, source: "Graduated college 2025 (Tommy Leech)" }
+
 # Searched on 14 Oct 2026 (three passes, incl. high-school and college sports
-# sites), nothing found, and no estimate from the clubs yet: Jackson Fricke,
-# Henry McCrady, Ben Washburn, Sam Miclot, Rob Ellsworth, Jim Usher, Andrew
-# Begg (the 2022 Fox Chapel HS senior is too young to be the 2013-15 player),
-# Randy Russell, Lou Astorino, Don Smith, Trey Kelly, Chris Rudolf, Patrick
-# Walsh, JP Walsh, Watson Barker, Joe Bertucci, Mike Gielarowski, Matt Fisch
+# sites), nothing found, and no estimate from the clubs yet: Henry McCrady,
+# Ben Washburn, Sam Miclot, Rob Ellsworth, Jim Usher, Andrew Begg (the 2022
+# Fox Chapel HS senior is too young to be the 2013-15 player), Don Smith,
+# Patrick Walsh, JP Walsh, Joe Bertucci, Mike Gielarowski, Matt Fisch
 # (older brother of Pitt's Aidan Fisch, b. 2000), David Koi, and the
 # initials-only F. Fisch, P. Compeau, B. Sera, B. Weinbaum.

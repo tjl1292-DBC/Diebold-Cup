@@ -1,6 +1,6 @@
 # Player resolution report
 
-Generated 2026-10-15T00:41:04.153Z from `Diebold_Cup_Results_1945-2025.xlsx` (sha256 ab3d3fa63a87).
+Generated 2026-10-15T01:07:02.328Z from `Diebold_Cup_Results_1945-2025.xlsx` (sha256 ab3d3fa63a87).
 
 ## Summary
 
@@ -10,12 +10,12 @@ Generated 2026-10-15T00:41:04.153Z from `Diebold_Cup_Results_1945-2025.xlsx` (sh
 | players (per club) | 257 |
 | method: exact_full_name | 1549 |
 | method: initial_by_year | 4 |
-| method: initial_single | 653 |
-| method: new_identity | 43 |
+| method: initial_single | 659 |
+| method: new_identity | 36 |
 | method: override | 80 |
 | method: suffix_merge | 97 |
 | method: surname_by_year | 33 |
-| method: surname_single | 197 |
+| method: surname_single | 198 |
 | confidence: high | 2522 |
 | confidence: medium | 132 |
 | confidence: low | 2 |
@@ -91,7 +91,7 @@ A name written without a suffix, merged into the only suffixed player of that na
 - "Scotty Bitar" x6 → Scott Bitar II (fox-chapel-scott-bitar-ii, 2017-2025, 32 rows)
 - "Davey Fuhrer" x1 → David Fuhrer II (fox-chapel-david-fuhrer-ii, 2021-2025, 13 rows)
 
-## Players with no first name on any sheet (43)
+## Players with no first name on any sheet (36)
 
 - field-club: **Fisher** (field-club-fisher) 2008-2008, 1 rows — written as Fisher
 - field-club: **R. Frohlich** (field-club-r-frohlich) 2025-2025, 1 rows — written as Frohlich
@@ -102,17 +102,11 @@ A name written without a suffix, merged into the only suffixed player of that na
 - field-club: **G. Thiele** (field-club-g-thiele) 2017-2017, 1 rows — written as Thiele
 - field-club: **B. Thomas** (field-club-b-thomas) 2000-2000, 1 rows — written as Thomas
 - field-club: **J. Wallisch** (field-club-j-wallisch) 2017-2017, 1 rows — written as Wallisch
-- fox-chapel: **L. Astorino** (fox-chapel-l-astorino) 2017-2017, 1 rows — written as Astorino
-- fox-chapel: **W. Barker** (fox-chapel-w-barker) 2018-2019, 2 rows — written as Barker
 - fox-chapel: **O. Delaney** (fox-chapel-o-delaney) 2023-2023, 1 rows — written as Delaney
 - fox-chapel: **K. Foster** (fox-chapel-k-foster) 2012-2012, 1 rows — written as Foster
 - fox-chapel: **T. Heppenstall** (fox-chapel-t-heppenstall) 2000-2007, 6 rows — written as Heppenstall
-- fox-chapel: **T. Kelly** (fox-chapel-t-kelly) 2017-2017, 1 rows — written as Kelly
 - fox-chapel: **Kramer** (fox-chapel-kramer) 2008-2008, 3 rows — written as Kramer
-- fox-chapel: **C. Rudolf** (fox-chapel-c-rudolf) 2017-2021, 3 rows — written as Rudolf
-- fox-chapel: **R. Russell** (fox-chapel-r-russell) 2016-2020, 8 rows — written as Russell, Russel
 - fox-chapel: **Schmitt** (fox-chapel-schmitt) 2001-2001, 1 rows — written as Schmitt
-- fox-chapel: **D. Smith** (fox-chapel-d-smith) 2017-2017, 1 rows — written as Smith
 - fox-chapel: **T. Sweeney** (fox-chapel-t-sweeney) 2000-2000, 1 rows — written as Sweeney
 - fox-chapel: **Wolff** (fox-chapel-wolff) 2000-2000, 1 rows — written as Wolff
 - longue-vue: **Benkart** (longue-vue-benkart) 2007-2007, 1 rows — written as Benkart
@@ -128,7 +122,6 @@ A name written without a suffix, merged into the only suffixed player of that na
 - longue-vue: **B. Weinbaum** (longue-vue-b-weinbaum) 2017-2017, 2 rows — written as Weinbaum
 - oakmont: **B. Burke** (oakmont-b-burke) 2018-2018, 1 rows — written as Burke
 - oakmont: **D. Donahue** (oakmont-d-donahue) 2020-2020, 1 rows — written as Donahue
-- oakmont: **Fricke** (oakmont-fricke) 2025-2025, 1 rows — written as Fricke
 - oakmont: **A. Hofmann** (oakmont-a-hofmann) 2007-2022, 7 rows — written as Hofmann
 - oakmont: **B. Kittsley** (oakmont-b-kittsley) 2009-2020, 2 rows — written as Kittsley
 - oakmont: **A. Lawson** (oakmont-a-lawson) 2017-2018, 2 rows — written as Lawson
@@ -222,8 +215,8 @@ One letter apart. Likely a transcription or handwriting variant; add an alias ru
 
 | Player | id | Seasons | Rows | Written as |
 |---|---|---|---|---|
-| L. Astorino | `fox-chapel-l-astorino` | 2017-2017 | 1 | L. Astorino (1) |
-| W. Barker | `fox-chapel-w-barker` | 2018-2019 | 2 | W. Barker (2) |
+| Lou Astorino | `fox-chapel-l-astorino` | 2017-2017 | 1 | L. Astorino (1) |
+| Watson Barker | `fox-chapel-w-barker` | 2018-2019 | 2 | W. Barker (2) |
 | Phil Beard | `fox-chapel-phil-beard` | 2001-2014 | 4 | Phil Beard (3), P. Beard (1) |
 | Andrew Begg | `fox-chapel-andrew-begg` | 2013-2015 | 9 | Andrew Begg (6), A. Begg (3) |
 | Stephen Begg | `fox-chapel-stephen-begg` | 2000-2012 | 19 | Stephen Begg (19) |
@@ -261,7 +254,7 @@ One letter apart. Likely a transcription or handwriting variant; add an alias ru
 | Adam Hofmann | `fox-chapel-adam-hofmann` | 2008-2025 | 30 | Adam Hofmann (22), A. Hofmann (6), Hofmann (2) |
 | Rick Humphrey | `fox-chapel-rick-humphrey` | 2000-2012 | 11 | Rick Humphrey (11) |
 | Dave Kassling | `fox-chapel-dave-kassling` | 2008-2022 | 6 | Kassling (3), Dave Kassling (2), D. Kassling (1) |
-| T. Kelly | `fox-chapel-t-kelly` | 2017-2017 | 1 | T. Kelly (1) |
+| Trey Kelly | `fox-chapel-t-kelly` | 2017-2017 | 1 | T. Kelly (1) |
 | John Klee | `fox-chapel-john-klee` | 2001-2001 | 2 | John Klee (2) |
 | Kramer | `fox-chapel-kramer` | 2008-2008 | 3 | Kramer (3) |
 | Adam Lauer | `fox-chapel-adam-lauer` | 2018-2023 | 19 | A. Lauer (7), Adam Lauer (7), Lauer (5) |
@@ -276,13 +269,13 @@ One letter apart. Likely a transcription or handwriting variant; add an alias ru
 | Drew Morrison | `fox-chapel-drew-morrison` | 2001-2001 | 2 | Drew Morrison (2) |
 | Greg Podufal | `fox-chapel-greg-podufal` | 2016-2021 | 18 | G. Podufal (13), Podufal (3), Greg Podufal (2) |
 | Tom Reading | `fox-chapel-tom-reading` | 2008-2014 | 5 | Tom Reading (5) |
-| C. Rudolf | `fox-chapel-c-rudolf` | 2017-2021 | 3 | C. Rudolf (3) |
-| R. Russell | `fox-chapel-r-russell` | 2016-2020 | 8 | R. Russell (6), R. Russel (1), Russell (1) |
+| Chris Rudolf | `fox-chapel-c-rudolf` | 2017-2021 | 3 | C. Rudolf (3) |
+| Randy Russell | `fox-chapel-r-russell` | 2016-2020 | 8 | R. Russell (6), R. Russel (1), Russell (1) |
 | Schmitt | `fox-chapel-schmitt` | 2001-2001 | 1 | Schmitt (1) |
 | Gus Schroeder | `fox-chapel-gus-schroeder` | 2007-2021 | 22 | Gus Schroeder (12), G. Schroeder (9), Schroeder (1) |
-| D. Smith | `fox-chapel-d-smith` | 2017-2017 | 1 | D. Smith (1) |
 | Ben Smith | `fox-chapel-ben-smith` | 2000-2013 | 24 | Ben Smith (24) |
 | Bennett Smith | `fox-chapel-bennett-smith` | 2003-2025 | 38 | B. Smith (19), Bennett Smith (18), Smith (1) |
+| Don Smith | `fox-chapel-d-smith` | 2017-2017 | 1 | D. Smith (1) |
 | Vance Smith IV | `fox-chapel-vance-smith-iv` | 2000-2024 | 52 | Vance Smith (35), V. Smith (15), Smith (1), Vance Smith IV (1) |
 | Hunter Stanchak | `fox-chapel-hunter-stanchak` | 2022-2025 | 7 | Hunter Stanchak (4), Stanchak (3) |
 | T. Sweeney | `fox-chapel-t-sweeney` | 2000-2000 | 1 | T. Sweeney (1) |
@@ -318,7 +311,7 @@ One letter apart. Likely a transcription or handwriting variant; add an alias ru
 | Robbie Denove | `oakmont-robbie-denove` | 2017-2025 | 16 | R. Denove (8), Robbie Denove (5), Denove (3) |
 | D. Donahue | `oakmont-d-donahue` | 2020-2020 | 1 | D. Donahue (1) |
 | Ned Foster | `oakmont-ned-foster` | 2000-2016 | 16 | Ned Foster (11), N. Foster (3), Foster (2) |
-| Fricke | `oakmont-fricke` | 2025-2025 | 1 | Fricke (1) |
+| Jackson Fricke | `oakmont-fricke` | 2025-2025 | 1 | Fricke (1) |
 | Andrew Friend | `oakmont-andrew-friend` | 2017-2025 | 21 | Andrew Friend (13), A. Friend (7), Friend (1) |
 | Steve Fuhrer | `oakmont-steve-fuhrer` | 2013-2013 | 1 | Steve Fuhrer (1) |
 | Chuck Gerba | `oakmont-chuck-gerba` | 2007-2007 | 2 | Chuck Gerba (2) |

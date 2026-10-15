@@ -81,6 +81,55 @@ players:
     surname: Duerr
     note: "Surname only on the 2025 sheet; first name from Tommy Leech."
 
+  - id: fox-chapel-l-astorino
+    club: fox-chapel
+    displayName: Lou Astorino
+    givenName: Lou
+    surname: Astorino
+    note: "L. Astorino on the 2017 sheet; first name from the Fox Chapel age roster."
+
+  - id: fox-chapel-w-barker
+    club: fox-chapel
+    displayName: Watson Barker
+    givenName: Watson
+    surname: Barker
+    note: "W. Barker on the sheets; first name from the Fox Chapel age roster."
+
+  - id: fox-chapel-t-kelly
+    club: fox-chapel
+    displayName: Trey Kelly
+    givenName: Trey
+    surname: Kelly
+    note: "T. Kelly on the 2017 sheet; first name from the Fox Chapel age roster."
+
+  - id: fox-chapel-c-rudolf
+    club: fox-chapel
+    displayName: Chris Rudolf
+    givenName: Chris
+    surname: Rudolf
+    note: "C. Rudolf on the sheets; first name from the Fox Chapel age roster."
+
+  - id: fox-chapel-r-russell
+    club: fox-chapel
+    displayName: Randy Russell
+    givenName: Randy
+    surname: Russell
+    note: "R. Russell (once R. Russel) on the sheets; first name from the Fox Chapel age roster."
+
+  - id: fox-chapel-d-smith
+    club: fox-chapel
+    displayName: Don Smith
+    givenName: Don
+    surname: Smith
+    note: "D. Smith on the 2017 sheet; first name from the Fox Chapel age roster."
+
+  - id: oakmont-fricke
+    club: oakmont
+    displayName: Jackson Fricke
+    givenName: Jackson
+    surname: Fricke
+    note: "Surname only on the 2025 sheet; first name from the Oakmont age roster."
+
 aliases:
   # --- spelling variants -----------------------------------------------------
   - { club: longue-vue, name: "Merk Vernallis", player: longue-vue-mark-vernallis }

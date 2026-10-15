@@ -204,9 +204,11 @@ players:
   - { player: longue-vue-p-compeau,                  born: "1986", approx: true, source: "Graduated college 2008 (Tommy Leech)" }
   - { player: longue-vue-matt-fisch,                 born: "1996", approx: true, source: "Graduated college 2018 (Tommy Leech); older brother of Pitt's Aidan Fisch (b. 2000)" }
   - { player: longue-vue-mike-gielarowski,           born: "1988", approx: true, source: "Graduated college 2010 (Tommy Leech)" }
+  - { player: longue-vue-b-sera,                     born: "1988", approx: true, source: "Graduated college 2010 (Tommy Leech)" }
+  - { player: longue-vue-david-koi,                  band: "50+", asOf: 2026, source: "60+ per Tommy Leech, Oct 2026 (bands stop at 50+)" }
 
 # Searched on 14 Oct 2026 (three passes, incl. high-school and college sports
 # sites), nothing found, and no estimate from the clubs yet: Ben Washburn, Sam Miclot, Rob Ellsworth, Jim Usher, Andrew Begg (the 2022
 # Fox Chapel HS senior is too young to be the 2013-15 player), Don Smith,
-# Patrick Walsh, JP Walsh, Joe Bertucci, David Koi, and the
-# initials-only F. Fisch, B. Sera, B. Weinbaum.
+# Patrick Walsh, JP Walsh, Joe Bertucci, and the
+# initials-only F. Fisch and B. Weinbaum.

@@ -1,6 +1,6 @@
 # Player resolution report
 
-Generated 2026-10-15T01:17:47.525Z from `Diebold_Cup_Results_1945-2025.xlsx` (sha256 ab3d3fa63a87).
+Generated 2026-10-15T01:19:22.485Z from `Diebold_Cup_Results_1945-2025.xlsx` (sha256 ab3d3fa63a87).
 
 ## Summary
 
@@ -10,8 +10,8 @@ Generated 2026-10-15T01:17:47.525Z from `Diebold_Cup_Results_1945-2025.xlsx` (sh
 | players (per club) | 257 |
 | method: exact_full_name | 1549 |
 | method: initial_by_year | 4 |
-| method: initial_single | 660 |
-| method: new_identity | 35 |
+| method: initial_single | 661 |
+| method: new_identity | 34 |
 | method: override | 80 |
 | method: suffix_merge | 97 |
 | method: surname_by_year | 33 |
@@ -91,7 +91,7 @@ A name written without a suffix, merged into the only suffixed player of that na
 - "Scotty Bitar" x6 → Scott Bitar II (fox-chapel-scott-bitar-ii, 2017-2025, 32 rows)
 - "Davey Fuhrer" x1 → David Fuhrer II (fox-chapel-david-fuhrer-ii, 2021-2025, 13 rows)
 
-## Players with no first name on any sheet (35)
+## Players with no first name on any sheet (34)
 
 - field-club: **Fisher** (field-club-fisher) 2008-2008, 1 rows — written as Fisher
 - field-club: **R. Frohlich** (field-club-r-frohlich) 2025-2025, 1 rows — written as Frohlich
@@ -116,7 +116,6 @@ A name written without a suffix, merged into the only suffixed player of that na
 - longue-vue: **F. Fisch** (longue-vue-f-fisch) 2017-2017, 1 rows — written as Fisch
 - longue-vue: **Folino** (longue-vue-folino) 2000-2000, 1 rows — written as Folino
 - longue-vue: **S. O'Donnell** (longue-vue-s-odonnell) 2003-2003, 1 rows — written as O'Donnell
-- longue-vue: **B. Sera** (longue-vue-b-sera) 2017-2022, 5 rows — written as Sera
 - longue-vue: **D. Tuthill** (longue-vue-d-tuthill) 2007-2007, 1 rows — written as Tuthill
 - longue-vue: **B. Weinbaum** (longue-vue-b-weinbaum) 2017-2017, 2 rows — written as Weinbaum
 - oakmont: **B. Burke** (oakmont-b-burke) 2018-2018, 1 rows — written as Burke
@@ -411,7 +410,7 @@ One letter apart. Likely a transcription or handwriting variant; add an alias ru
 | Ben Rathfon | `longue-vue-ben-rathfon` | 2009-2014 | 15 | Ben Rathfon (11), B. Rathfon (4) |
 | Evan Ruhling | `longue-vue-evan-ruhling` | 2016-2025 | 37 | E. Ruhling (16), Evan Ruhling (16), Ruhling (5) |
 | Jeff Schroeder | `longue-vue-jeff-schroeder` | 2000-2003 | 11 | Jeff Schroeder (11) |
-| B. Sera | `longue-vue-b-sera` | 2017-2022 | 5 | B. Sera (4), Sera (1) |
+| Ben Sera | `longue-vue-b-sera` | 2017-2022 | 5 | B. Sera (4), Sera (1) |
 | Matt Simone | `longue-vue-matt-simone` | 2009-2012 | 8 | Matt Simone (8) |
 | Charlie Troutman | `longue-vue-charlie-troutman` | 2020-2025 | 6 | Charlie Troutman (4), C. Troutman (2) |
 | Jeff Troutman | `longue-vue-jeff-troutman` | 2000-2016 | 24 | Jeff Troutman (16), Troutman (4), J. Troutman (4) |

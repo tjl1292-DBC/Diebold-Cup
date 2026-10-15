@@ -157,6 +157,10 @@ players:
   - { player: fox-chapel-james-braham,                born: "1977", approx: true, source: "Probably Jimmy Brahm, PGA, former Fox Chapel assistant pro: Slippery Rock graduate who entered the golf business in 2000; identity and year both uncertain" }
   - { player: fox-chapel-gus-schroeder,               born: "1970", approx: true, source: "Gus Schroeder Jr., Schroeder Industries president since 2005; rough estimate, father (also Gus, b. c. 1940) died c. 2000" }
 
+  # --- Longue Vue, estimated by Tommy Leech, 14 Oct 2026
+  - { player: longue-vue-andrew-hodge,                born: "1990", approx: true, source: "About 36 in Oct 2026 (Tommy Leech)" }
+  - { player: longue-vue-kevin-heher,                 born: "1984", approx: true, source: "About 42 in Oct 2026 (Tommy Leech)" }
+
 # Searched on 14 Oct 2026, nothing found: Jackson Fricke, Todd Berglund,
 # Henry McCrady, Ben Washburn, Sam Miclot, Jon Halpern,
 # Rob Ellsworth, Don Thomas, Mike Foster, Jim Usher,
@@ -167,7 +171,7 @@ players:
 # Mike Gielarowski, Matt Fisch (older brother of Pitt's Aidan Fisch, b. 2000),
 # Mark Vernallis, Nick Gordon,
 # Stu Lotz, Joe Cordaro, Al Beeken, Joe Bertucci, JJ Bush Jr., Amani
-# D'Ambrosio, Andrew Hodge, Chris Osborne, Kevin Heher, Shawn Will, Jim
+# D'Ambrosio, Chris Osborne, Shawn Will, Jim
 # McBride, Jim Crawford, Mike Colville, Jeff and Scott Troutman,
 # Damon Claus, JP Walsh, Ben Smith (Fox Chapel). A third pass over high-school
 # and college sports sites (MaxPreps, Hudl, Trib HSSN, WPIAL, team rosters)

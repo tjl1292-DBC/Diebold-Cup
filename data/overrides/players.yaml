@@ -130,6 +130,13 @@ players:
     surname: Fricke
     note: "Surname only on the 2025 sheet; first name from the Oakmont age roster."
 
+  - id: longue-vue-p-compeau
+    club: longue-vue
+    displayName: Phil Compeau
+    givenName: Phil
+    surname: Compeau
+    note: "P. Compeau on the 2018 sheet; first name from Tommy Leech."
+
 aliases:
   # --- spelling variants -----------------------------------------------------
   - { club: longue-vue, name: "Merk Vernallis", player: longue-vue-mark-vernallis }

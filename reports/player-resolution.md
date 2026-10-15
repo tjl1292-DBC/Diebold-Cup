@@ -1,6 +1,6 @@
 # Player resolution report
 
-Generated 2026-10-15T01:11:16.351Z from `Diebold_Cup_Results_1945-2025.xlsx` (sha256 ab3d3fa63a87).
+Generated 2026-10-15T01:15:26.032Z from `Diebold_Cup_Results_1945-2025.xlsx` (sha256 ab3d3fa63a87).
 
 ## Summary
 
@@ -10,8 +10,8 @@ Generated 2026-10-15T01:11:16.351Z from `Diebold_Cup_Results_1945-2025.xlsx` (sh
 | players (per club) | 257 |
 | method: exact_full_name | 1549 |
 | method: initial_by_year | 4 |
-| method: initial_single | 659 |
-| method: new_identity | 36 |
+| method: initial_single | 660 |
+| method: new_identity | 35 |
 | method: override | 80 |
 | method: suffix_merge | 97 |
 | method: surname_by_year | 33 |
@@ -91,7 +91,7 @@ A name written without a suffix, merged into the only suffixed player of that na
 - "Scotty Bitar" x6 → Scott Bitar II (fox-chapel-scott-bitar-ii, 2017-2025, 32 rows)
 - "Davey Fuhrer" x1 → David Fuhrer II (fox-chapel-david-fuhrer-ii, 2021-2025, 13 rows)
 
-## Players with no first name on any sheet (36)
+## Players with no first name on any sheet (35)
 
 - field-club: **Fisher** (field-club-fisher) 2008-2008, 1 rows — written as Fisher
 - field-club: **R. Frohlich** (field-club-r-frohlich) 2025-2025, 1 rows — written as Frohlich
@@ -112,7 +112,6 @@ A name written without a suffix, merged into the only suffixed player of that na
 - longue-vue: **Benkart** (longue-vue-benkart) 2007-2007, 1 rows — written as Benkart
 - longue-vue: **M. Betts** (longue-vue-m-betts) 2008-2008, 1 rows — written as Betts
 - longue-vue: **J. Bulger** (longue-vue-j-bulger) 2003-2003, 1 rows — written as Bulger
-- longue-vue: **P. Compeau** (longue-vue-p-compeau) 2018-2018, 1 rows — written as Compeau
 - longue-vue: **D. DelBianco** (longue-vue-d-delbianco) 2000-2000, 1 rows — written as DelBianco
 - longue-vue: **F. Fisch** (longue-vue-f-fisch) 2017-2017, 1 rows — written as Fisch
 - longue-vue: **Folino** (longue-vue-folino) 2000-2000, 1 rows — written as Folino
@@ -372,7 +371,7 @@ One letter apart. Likely a transcription or handwriting variant; add an alias ru
 | JJ Bush Jr. | `longue-vue-jj-bush-jr` | 2018-2025 | 14 | JJ Bush (9), J. Bush (3), JJ Bush Jr (1), Bush (1) |
 | Doug Chambers | `longue-vue-doug-chambers` | 2000-2003 | 5 | Doug Chambers (5) |
 | Mike Colville | `longue-vue-mike-colville` | 2000-2019 | 35 | Mike Colville (27), M. Colville (7), Colville (1) |
-| P. Compeau | `longue-vue-p-compeau` | 2018-2018 | 1 | P. Compeau (1) |
+| Phil Compeau | `longue-vue-p-compeau` | 2018-2018 | 1 | P. Compeau (1) |
 | Anthony Cordaro | `longue-vue-anthony-cordaro` | 2013-2018 | 16 | A. Cordaro (12), Anthony Cordaro (3), Cordaro (1) |
 | Joe Cordaro | `longue-vue-joe-cordaro` | 2007-2016 | 17 | Joe Cordaro (11), J. Cordaro (6) |
 | Jim Crawford | `longue-vue-jim-crawford` | 2007-2018 | 13 | Jim Crawford (9), J. Crawford (4) |

@@ -12,7 +12,7 @@
     "import": "tsx scripts/import.ts",
     "validate": "tsx scripts/validate.ts",
     "data": "npm run import && npm run validate",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.126.0",

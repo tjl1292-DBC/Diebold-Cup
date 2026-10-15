@@ -192,6 +192,13 @@ export const players = sqliteTable(
     birthYear: integer("birth_year"),
     birthYearApprox: integer("birth_year_approx", { mode: "boolean" }).notNull().default(false),
     birthSource: text("birth_source"),
+    /**
+     * When only an age band is known ("50+", "30-39"): the band id from
+     * src/lib/ages.ts and the calendar year it was true in. Null when a
+     * birth year is on file, since the band then follows from it.
+     */
+    ageBand: text("age_band"),
+    ageBandYear: integer("age_band_year"),
   },
   (t) => [index("players_club").on(t.clubId), index("players_surname").on(t.surname)],
 );

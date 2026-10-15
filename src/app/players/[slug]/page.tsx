@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getStore, playerView, fmtPts, fmtPct } from "@/lib/data";
 import { PageTitle, Section, Stat, ClubName, PlayerName, SeasonLink, Pill, FlagList, Place, Empty } from "@/components/ui";
+import { bandById } from "@/lib/ages";
 
 type Params = { slug: string };
 
@@ -26,7 +27,12 @@ export default async function PlayerPage({ params }: { params: Promise<Params> }
   const { player, club, totals } = v;
   const singlesAvg = totals.singlesMatches ? totals.singlesPoints / totals.singlesMatches : null;
   const span = player.firstSeason === player.lastSeason ? `${player.firstSeason}` : `${player.firstSeason}–${player.lastSeason}`;
-  const born = player.birthYear === null ? null : `born ${player.birthYearApprox ? "c. " : ""}${player.birthYear}`;
+  const born =
+    player.birthYear !== null
+      ? `born ${player.birthYearApprox ? "c. " : ""}${player.birthYear}`
+      : player.ageBand !== null && player.ageBandYear !== null
+        ? `age ${bandById.get(player.ageBand)?.label ?? player.ageBand} in ${player.ageBandYear}`
+        : null;
 
   return (
     <>

@@ -8,6 +8,7 @@
  * number.
  */
 import { db, schema } from "@/db/client";
+import { AGE_BANDS, bandById, bandForAge, bandInYear, type AgeBand } from "@/lib/ages";
 
 export type Club = typeof schema.clubs.$inferSelect;
 export type Season = typeof schema.seasons.$inferSelect;
@@ -704,6 +705,51 @@ export function rosterAges(s: Store, f: LeaderboardFilter = {}): RosterAgeRow[] 
       };
     })
     .sort((a, b) => a.year - b.year || a.club.sortOrder - b.club.sortOrder);
+}
+
+export interface BandCount {
+  band: AgeBand;
+  /** Players whose birth year puts them in this band that season. */
+  known: number;
+  /** Players with only a stored band whose lowest possible band that season is this one ("or older"). */
+  atLeast: number;
+}
+
+export interface RosterBandRow {
+  year: number;
+  club: Club;
+  players: number;
+  bands: BandCount[];
+  /** Players with neither a birth year nor a band. */
+  unknown: number;
+}
+
+/**
+ * One line per (season, club): how many of the club's players fall in each
+ * age band that season. A player with a birth year counts in one band; a
+ * player with only a stored band counts in the lowest band he could be in
+ * that year, under atLeast, since "50+ in 2026" is "37 or older" in 2013.
+ */
+export function rosterBands(s: Store, f: LeaderboardFilter = {}): RosterBandRow[] {
+  return rosterAges(s, f).map((r) => {
+    const counts = new Map(AGE_BANDS.map((b) => [b.id, { band: b, known: 0, atLeast: 0 }]));
+    let unknown = 0;
+    const ids = new Set<string>();
+    for (const e of s.entries) {
+      if (e.clubId !== r.club.id || s.sessionById.get(e.sessionId)!.seasonYear !== r.year) continue;
+      for (const ep of s.entryPlayersByEntry.get(e.id) ?? []) ids.add(ep.playerId);
+    }
+    for (const id of ids) {
+      const p = s.playerById.get(id)!;
+      if (p.birthYear !== null) counts.get(bandForAge(r.year - p.birthYear).id)!.known++;
+      else if (p.ageBand !== null && p.ageBandYear !== null) {
+        const est = bandInYear(bandById.get(p.ageBand)!, p.ageBandYear, r.year);
+        if (est) counts.get(est.band.id)!.atLeast++;
+        else unknown++;
+      } else unknown++;
+    }
+    return { year: r.year, club: r.club, players: r.players, bands: [...counts.values()], unknown };
+  });
 }
 
 /** Every player-season with a known age (a player counts once per season), youngest first. */

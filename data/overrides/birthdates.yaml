@@ -8,6 +8,9 @@
 #            source actually gives.
 #   approx:  true when the year was inferred from an age or a school class
 #            rather than read from a record (shown as "c. 1995").
+#   band:    instead of `born`, when only an age band is known: "u25",
+#            "25-29", "30-39", "40-49" or "50+" (bands in src/lib/ages.ts),
+#            with `asOf: <year>` for the year it was true in.
 #   source:  where it came from, in a few words.
 #
 # Dates were taken from the clubs' age rosters (08.15.25 Diebold Ages.xlsx)
@@ -160,6 +163,9 @@ players:
   # --- Longue Vue, estimated by Tommy Leech, 14 Oct 2026
   - { player: longue-vue-andrew-hodge,                born: "1990", approx: true, source: "About 36 in Oct 2026 (Tommy Leech)" }
   - { player: longue-vue-kevin-heher,                 born: "1984", approx: true, source: "About 42 in Oct 2026 (Tommy Leech)" }
+  - { player: longue-vue-mike-colville,               band: "50+", asOf: 2026, source: "Tommy Leech, Oct 2026" }
+  - { player: longue-vue-jim-mcbride,                 band: "50+", asOf: 2026, source: "Tommy Leech, Oct 2026" }
+  - { player: longue-vue-jim-crawford,                band: "50+", asOf: 2026, source: "Tommy Leech, Oct 2026" }
 
 # Searched on 14 Oct 2026, nothing found: Jackson Fricke, Todd Berglund,
 # Henry McCrady, Ben Washburn, Sam Miclot, Jon Halpern,
@@ -171,8 +177,8 @@ players:
 # Mike Gielarowski, Matt Fisch (older brother of Pitt's Aidan Fisch, b. 2000),
 # Mark Vernallis, Nick Gordon,
 # Stu Lotz, Joe Cordaro, Al Beeken, Joe Bertucci, JJ Bush Jr., Amani
-# D'Ambrosio, Chris Osborne, Shawn Will, Jim
-# McBride, Jim Crawford, Mike Colville, Jeff and Scott Troutman,
+# D'Ambrosio, Chris Osborne, Shawn Will,
+# Jeff and Scott Troutman,
 # Damon Claus, JP Walsh, Ben Smith (Fox Chapel). A third pass over high-school
 # and college sports sites (MaxPreps, Hudl, Trib HSSN, WPIAL, team rosters)
 # added nothing for any of these.

@@ -21,6 +21,7 @@ import { migrate } from "drizzle-orm/libsql/migrator";
 import { db, client, schema } from "../src/db/client";
 import { parseName, splitPlayers, slugify, editDistance } from "../src/lib/names";
 import { resolvePlayers, displayNameFor, type Token, type Overrides, type Identity } from "../src/lib/resolve";
+import { AGE_BANDS, parseBand } from "../src/lib/ages";
 
 type Cell = string | number | null;
 type Row = Cell[];
@@ -76,7 +77,7 @@ const clubsCfg = readJson<{ clubs: ClubCfg[] }>("data/config/clubs.json").clubs;
 const scoring = readJson<ScoringCfg>("data/config/scoring.json");
 const seasonsCfg = readJson<SeasonsCfg>("data/config/seasons.json");
 const overrides = readYaml<Overrides>("data/overrides/players.yaml");
-const birthdates = readYaml<{ players?: { player: string; born: string | number; approx?: boolean; source?: string }[] }>("data/overrides/birthdates.yaml").players ?? [];
+const birthdates = readYaml<{ players?: { player: string; born?: string | number; band?: string; asOf?: number; approx?: boolean; source?: string }[] }>("data/overrides/birthdates.yaml").players ?? [];
 
 const clubByLabel = new Map<string, ClubCfg>();
 for (const c of clubsCfg) for (const l of c.sheetLabels) clubByLabel.set(l.toLowerCase(), c);
@@ -702,6 +703,15 @@ for (const id of resolved.identities) {
   for (const b of birthdates) {
     const p = byId.get(b.player);
     if (!p) throw new Error(`birthdates.yaml names unknown player id "${b.player}".`);
+    if (b.born === undefined) {
+      const band = b.band === undefined ? null : parseBand(String(b.band));
+      if (!band) throw new Error(`birthdates.yaml: ${b.player} needs \`born\` or a \`band\` of ${AGE_BANDS.map((x) => x.id).join(", ")}.`);
+      if (typeof b.asOf !== "number") throw new Error(`birthdates.yaml: ${b.player} has a band but no \`asOf\` year.`);
+      p.ageBand = band.id;
+      p.ageBandYear = b.asOf;
+      p.birthSource = b.source ?? null;
+      continue;
+    }
     const born = String(b.born);
     const m = /^(\d{4})(?:-(\d{2})(?:-(\d{2}))?)?$/.exec(born);
     if (!m) throw new Error(`birthdates.yaml: "${born}" for ${b.player} is not YYYY, YYYY-MM or YYYY-MM-DD.`);

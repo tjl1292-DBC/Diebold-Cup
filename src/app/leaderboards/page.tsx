@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getStore, careerRows, lowRounds, partnershipRows, rosterAges, playerSeasonAges, fmtPts, fmtPct, fmtAge, fmtApprox, pct, ERA_LABEL, type PlayerSeasonAge } from "@/lib/data";
+import { getStore, careerRows, lowRounds, partnershipRows, rosterAges, rosterBands, playerSeasonAges, fmtPts, fmtPct, fmtAge, fmtApprox, pct, ERA_LABEL, type PlayerSeasonAge } from "@/lib/data";
+import { AGE_BANDS } from "@/lib/ages";
 import { PageTitle, Section, ClubName, PlayerName, SeasonLink } from "@/components/ui";
 
 export const metadata: Metadata = { title: "Leaderboards" };
@@ -28,6 +29,9 @@ export default async function LeaderboardsPage({ searchParams }: { searchParams:
   const youngest = knownAges.slice(0, 15);
   const oldest = [...knownAges].reverse().slice(0, 15);
   const coverage = { players: ages.reduce((t, r) => t + r.players, 0), withYear: ages.reduce((t, r) => t + r.withYear, 0), approx: ages.reduce((t, r) => t + r.approx, 0) };
+  const bandRows = rosterBands(s, filter)
+    .filter((r) => r.unknown < r.players)
+    .sort((a, b) => b.year - a.year || a.club.sortOrder - b.club.sortOrder);
   const qs = (patch: Partial<Search>) => {
     const p = new URLSearchParams();
     const next = { club: club ?? "", era: era ?? "", min: String(minMatches), ...patch };
@@ -284,6 +288,54 @@ export default async function LeaderboardsPage({ searchParams }: { searchParams:
                       </tr>
                     );
                   })}
+                </tbody>
+              </Board>
+            )}
+          </Section>
+        </div>
+
+        <div className="lg:col-span-2">
+          <Section id="bands" title="Roster by age band" aside={`${scope} · players per band each season`}>
+            <p className="mb-3 text-sm text-ink-2">
+              Each player counted once per season in the band his age falls in. A player with only an age band on file (a captain&apos;s &ldquo;he&apos;s 50+&rdquo;) is shown as <span className="text-brass">+n</span> in the
+              lowest band he could be in that year, since 50+ in 2026 was 37 or older in 2013. The last column is players with nothing on file.
+            </p>
+            {bandRows.length === 0 ? (
+              <p className="rounded border border-dashed border-line px-4 py-6 text-center text-sm text-ink-2">No ages on file for this selection.</p>
+            ) : (
+              <Board>
+                <thead>
+                  <tr>
+                    <th>Year</th>
+                    <th>Club</th>
+                    <th className="r">Players</th>
+                    {AGE_BANDS.map((b) => (
+                      <th key={b.id} className="r">
+                        {b.label}
+                      </th>
+                    ))}
+                    <th className="r">Unknown</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {bandRows.map((r) => (
+                    <tr key={`${r.year}-${r.club.id}`} className={r.unknown === r.players ? "text-ink-3" : ""}>
+                      <td>
+                        <SeasonLink season={r.year} />
+                      </td>
+                      <td>
+                        <ClubName club={r.club} />
+                      </td>
+                      <td className="r">{r.players}</td>
+                      {r.bands.map((c) => (
+                        <td key={c.band.id} className="r">
+                          {c.known || (c.atLeast ? "" : "–")}
+                          {c.atLeast > 0 && <span className="text-brass"> +{c.atLeast}</span>}
+                        </td>
+                      ))}
+                      <td className="r text-ink-3">{r.unknown || "–"}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </Board>
             )}

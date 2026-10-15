@@ -1,6 +1,6 @@
 # Player resolution report
 
-Generated 2026-10-15T00:28:50.502Z from `Diebold_Cup_Results_1945-2025.xlsx` (sha256 ab3d3fa63a87).
+Generated 2026-10-15T00:31:51.675Z from `Diebold_Cup_Results_1945-2025.xlsx` (sha256 ab3d3fa63a87).
 
 ## Summary
 

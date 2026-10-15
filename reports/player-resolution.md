@@ -1,21 +1,21 @@
 # Player resolution report
 
-Generated 2026-10-15T00:31:51.675Z from `Diebold_Cup_Results_1945-2025.xlsx` (sha256 ab3d3fa63a87).
+Generated 2026-10-15T00:41:04.153Z from `Diebold_Cup_Results_1945-2025.xlsx` (sha256 ab3d3fa63a87).
 
 ## Summary
 
 | | |
 |---|---|
 | name tokens | 2656 |
-| players (per club) | 258 |
-| method: exact_full_name | 1550 |
+| players (per club) | 257 |
+| method: exact_full_name | 1549 |
 | method: initial_by_year | 4 |
-| method: initial_single | 652 |
-| method: new_identity | 45 |
-| method: override | 79 |
+| method: initial_single | 653 |
+| method: new_identity | 43 |
+| method: override | 80 |
 | method: suffix_merge | 97 |
 | method: surname_by_year | 33 |
-| method: surname_single | 196 |
+| method: surname_single | 197 |
 | confidence: high | 2522 |
 | confidence: medium | 132 |
 | confidence: low | 2 |
@@ -91,7 +91,7 @@ A name written without a suffix, merged into the only suffixed player of that na
 - "Scotty Bitar" x6 → Scott Bitar II (fox-chapel-scott-bitar-ii, 2017-2025, 32 rows)
 - "Davey Fuhrer" x1 → David Fuhrer II (fox-chapel-david-fuhrer-ii, 2021-2025, 13 rows)
 
-## Players with no first name on any sheet (45)
+## Players with no first name on any sheet (43)
 
 - field-club: **Fisher** (field-club-fisher) 2008-2008, 1 rows — written as Fisher
 - field-club: **R. Frohlich** (field-club-r-frohlich) 2025-2025, 1 rows — written as Frohlich
@@ -117,11 +117,9 @@ A name written without a suffix, merged into the only suffixed player of that na
 - fox-chapel: **Wolff** (fox-chapel-wolff) 2000-2000, 1 rows — written as Wolff
 - longue-vue: **Benkart** (longue-vue-benkart) 2007-2007, 1 rows — written as Benkart
 - longue-vue: **M. Betts** (longue-vue-m-betts) 2008-2008, 1 rows — written as Betts
-- longue-vue: **W. Bloss** (longue-vue-w-bloss) 2009-2018, 2 rows — written as Bloss
 - longue-vue: **J. Bulger** (longue-vue-j-bulger) 2003-2003, 1 rows — written as Bulger
 - longue-vue: **P. Compeau** (longue-vue-p-compeau) 2018-2018, 1 rows — written as Compeau
 - longue-vue: **D. DelBianco** (longue-vue-d-delbianco) 2000-2000, 1 rows — written as DelBianco
-- longue-vue: **Duerr** (longue-vue-duerr) 2025-2025, 1 rows — written as Duerr
 - longue-vue: **F. Fisch** (longue-vue-f-fisch) 2017-2017, 1 rows — written as Fisch
 - longue-vue: **Folino** (longue-vue-folino) 2000-2000, 1 rows — written as Folino
 - longue-vue: **S. O'Donnell** (longue-vue-s-odonnell) 2003-2003, 1 rows — written as O'Donnell
@@ -157,7 +155,7 @@ One letter apart. Likely a transcription or handwriting variant; add an alias ru
 
 ## Roster by club
 
-### Pittsburgh Field Club (59)
+### Pittsburgh Field Club (58)
 
 | Player | id | Seasons | Rows | Written as |
 |---|---|---|---|---|
@@ -165,8 +163,7 @@ One letter apart. Likely a transcription or handwriting variant; add an alias ru
 | Pat Brady | `field-club-pat-brady` | 2000-2021 | 18 | Pat Brady (10), P. Brady (6), Brady (2) |
 | Andy Butler | `field-club-andy-butler` | 2018-2021 | 16 | A. Butler (9), Andy Butler (5), Butler (2) |
 | Denny Cestra | `field-club-denny-cestra` | 2013-2014 | 3 | D. Cestra (2), Denny Cestra (1) |
-| Damon Claus | `field-club-damon-claus` | 2024-2024 | 1 | Damon Claus (1) |
-| DJ Claus | `field-club-dj-claus` | 2017-2020 | 4 | DJ Claus (3), D.J. Claus (1) |
+| DJ Claus | `field-club-dj-claus` | 2017-2024 | 5 | DJ Claus (3), D.J. Claus (1), Damon Claus (1) |
 | Rick Collins | `field-club-rick-collins` | 2000-2007 | 13 | Rick Collins (13) |
 | Paul Curry | `field-club-paul-curry` | 2000-2015 | 21 | Paul Curry (19), P. Curry (2) |
 | Tim Dodson | `field-club-tim-dodson` | 2008-2023 | 16 | Tim Dodson (9), T. Dodson (6), Dodson (1) |
@@ -377,7 +374,7 @@ One letter apart. Likely a transcription or handwriting variant; add an alias ru
 | Joe Bertucci | `longue-vue-joe-bertucci` | 2008-2013 | 16 | Joe Bertucci (15), J. Bertucci (1) |
 | M. Betts | `longue-vue-m-betts` | 2008-2008 | 1 | M. Betts (1) |
 | Will Betts | `longue-vue-will-betts` | 2008-2025 | 39 | Will Betts (26), W. Betts (11), Betts (2) |
-| W. Bloss | `longue-vue-w-bloss` | 2009-2018 | 2 | Bloss (1), W. Bloss (1) |
+| Will Bloss | `longue-vue-w-bloss` | 2009-2018 | 2 | Bloss (1), W. Bloss (1) |
 | J. Bulger | `longue-vue-j-bulger` | 2003-2003 | 1 | J. Bulger (1) |
 | JJ Bush Jr. | `longue-vue-jj-bush-jr` | 2018-2025 | 14 | JJ Bush (9), J. Bush (3), JJ Bush Jr (1), Bush (1) |
 | Doug Chambers | `longue-vue-doug-chambers` | 2000-2003 | 5 | Doug Chambers (5) |
@@ -389,7 +386,7 @@ One letter apart. Likely a transcription or handwriting variant; add an alias ru
 | Amani D'Ambrosio | `longue-vue-amani-dambrosio` | 2024-2025 | 8 | Amani D'Ambrosio (8) |
 | D. DelBianco | `longue-vue-d-delbianco` | 2000-2000 | 1 | D. DelBianco (1) |
 | Tim Derdenger | `longue-vue-tim-derdenger` | 2015-2016 | 4 | Tim Derdenger (2), Derdenger (1), T. Derdenger (1) |
-| Duerr | `longue-vue-duerr` | 2025-2025 | 1 | Duerr (1) |
+| Sam Duerr | `longue-vue-duerr` | 2025-2025 | 1 | Duerr (1) |
 | Ken Dyer | `longue-vue-ken-dyer` | 2003-2009 | 7 | Dyer (4), Ken Dyer (3) |
 | Jim Eisengart | `longue-vue-jim-eisengart` | 2000-2009 | 8 | Jim Eisengart (8) |
 | Derek Evans | `longue-vue-derek-evans` | 2021-2025 | 7 | Derek Evans (4), Evans (2), D. Evans (1) |

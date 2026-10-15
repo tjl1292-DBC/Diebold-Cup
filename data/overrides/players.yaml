@@ -67,11 +67,26 @@ players:
     surname: Banks
     note: "Surname only on the 2025 sheet; first name from Tommy Leech."
 
+  - id: longue-vue-w-bloss
+    club: longue-vue
+    displayName: Will Bloss
+    givenName: Will
+    surname: Bloss
+    note: "W. Bloss or Bloss on the sheets; first name from Tommy Leech."
+
+  - id: longue-vue-duerr
+    club: longue-vue
+    displayName: Sam Duerr
+    givenName: Sam
+    surname: Duerr
+    note: "Surname only on the 2025 sheet; first name from Tommy Leech."
+
 aliases:
   # --- spelling variants -----------------------------------------------------
   - { club: longue-vue, name: "Merk Vernallis", player: longue-vue-mark-vernallis }
   - { club: oakmont,    name: "R. Bergland",    player: oakmont-rich-berglund }
   - { club: fox-chapel, name: "R. Russel",      player: fox-chapel-r-russell }
+  - { club: field-club, name: "Damon Claus",    player: field-club-dj-claus }   # same man; DJ = Damon J.
   - { club: fox-chapel, name: "Russell",        player: fox-chapel-r-russell }
   - { club: oakmont,    name: "D. Kingsley",    player: oakmont-duke-kingsley }
   - { club: oakmont,    name: "Duke Kinsley",   player: oakmont-duke-kingsley }
@@ -115,4 +130,4 @@ people:
   - { name: Paul Walsh,     players: [longue-vue-paul-walsh, fox-chapel-paul-walsh] }
   - { name: Tim Derdenger,  players: [longue-vue-tim-derdenger, fox-chapel-tim-derdenger] }
   - { name: Rich Berglund,  players: [oakmont-rich-berglund, fox-chapel-rich-berglund] }
-  - { name: Todd Berglund,  players: [fox-chapel-todd-berglund, oakmont-todd-berglund] }
+  # Todd Berglund at Fox Chapel (2012-13, 50+) and at Oakmont (2024-25, b. c. 1991) are different men - Tommy, Oct 2026.

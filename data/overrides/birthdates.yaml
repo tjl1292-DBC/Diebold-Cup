@@ -167,18 +167,37 @@ players:
   - { player: longue-vue-jim-mcbride,                 band: "50+", asOf: 2026, source: "Tommy Leech, Oct 2026" }
   - { player: longue-vue-jim-crawford,                band: "50+", asOf: 2026, source: "Tommy Leech, Oct 2026" }
 
-# Searched on 14 Oct 2026, nothing found: Jackson Fricke, Todd Berglund,
-# Henry McCrady, Ben Washburn, Sam Miclot, Jon Halpern,
-# Rob Ellsworth, Don Thomas, Mike Foster, Jim Usher,
-# Dave Mengel, Andrew Begg (the 2022 Fox Chapel HS senior is too young to be
-# the 2013-15 player), Phil Beard, Randy Russell, Lou Astorino,
-# Don Smith, Trey Kelly, Chris Rudolf, Patrick Walsh, Watson Barker,
-# TJ Cleveland. Second pass, same day, also nothing: Evan Ruhling, Derek Evans,
-# Mike Gielarowski, Matt Fisch (older brother of Pitt's Aidan Fisch, b. 2000),
-# Mark Vernallis, Nick Gordon,
-# Stu Lotz, Joe Cordaro, Al Beeken, Joe Bertucci, JJ Bush Jr., Amani
-# D'Ambrosio, Chris Osborne, Shawn Will,
-# Jeff and Scott Troutman,
-# Damon Claus, JP Walsh, Ben Smith (Fox Chapel). A third pass over high-school
-# and college sports sites (MaxPreps, Hudl, Trib HSSN, WPIAL, team rosters)
-# added nothing for any of these.
+  # --- estimated by Tommy Leech (b. Dec 1992), 14 Oct 2026: "my age" = c. 1992
+  - { player: oakmont-todd-berglund,                 born: "1991", approx: true, source: "A year older than Tommy Leech (Tommy, Oct 2026)" }
+  - { player: fox-chapel-tj-cleveland,               born: "1992", approx: true, source: "Same age as Tommy Leech (Tommy, Oct 2026)" }
+  - { player: fox-chapel-jon-halpern,                born: "1991", approx: true, source: "A year older than Tommy Leech (Tommy, Oct 2026)" }
+  - { player: fox-chapel-ben-smith,                  born: "1981", approx: true, source: "About 45 in Oct 2026 (Tommy Leech)" }
+  - { player: fox-chapel-don-thomas,                 born: "1986", approx: true, source: "About 40 in Oct 2026 (Tommy Leech)" }
+  - { player: longue-vue-w-bloss,                    born: "1991", approx: true, source: "A year older than Tommy Leech (Tommy, Oct 2026)" }
+  - { player: longue-vue-jj-bush-jr,                 born: "1992", approx: true, source: "Same age as Tommy Leech; Central Catholic (Tommy, Oct 2026)" }
+  - { player: longue-vue-duerr,                      born: "1986", approx: true, source: "About 40 in Oct 2026 (Tommy Leech)" }
+  - { player: longue-vue-derek-evans,                born: "1986", approx: true, source: "About 40 in Oct 2026 (Tommy Leech)" }
+  - { player: longue-vue-nick-gordon,                born: "1991", approx: true, source: "About 35 in Oct 2026 (Tommy Leech)" }
+  - { player: longue-vue-stu-lotz,                   born: "1992", approx: true, source: "Same age as Tommy Leech (Tommy, Oct 2026)" }
+  - { player: longue-vue-evan-ruhling,               born: "1993", approx: true, source: "A year younger than Tommy Leech (Tommy, Oct 2026)" }
+  - { player: longue-vue-mark-vernallis,             born: "1989", approx: true, source: "About 37 in Oct 2026 (Tommy Leech)" }
+  - { player: longue-vue-shawn-will,                 born: "1976", approx: true, source: "About 50 in Oct 2026 (Tommy Leech)" }
+  - { player: longue-vue-amani-dambrosio,            born: "2002", approx: true, source: "Fox Chapel HS, 2020 High School Golf National Invitational; Barry University golf, senior 2023-24" }
+  - { player: fox-chapel-phil-beard,                 band: "50+", asOf: 2026, source: "Tommy Leech, Oct 2026" }
+  - { player: fox-chapel-todd-berglund,              band: "50+", asOf: 2026, source: "Tommy Leech, Oct 2026" }
+  - { player: fox-chapel-mike-foster,                band: "50+", asOf: 2026, source: "Tommy Leech, Oct 2026" }
+  - { player: fox-chapel-dave-mengel,                band: "50+", asOf: 2026, source: "Tommy Leech, Oct 2026" }
+  - { player: longue-vue-al-beeken,                  band: "50+", asOf: 2026, source: "60+ per Tommy Leech, Oct 2026 (bands stop at 50+)" }
+  - { player: longue-vue-joe-cordaro,                band: "50+", asOf: 2026, source: "Tommy Leech, Oct 2026" }
+  - { player: longue-vue-chris-osborne,              band: "50+", asOf: 2026, source: "Tommy Leech, Oct 2026" }
+  - { player: longue-vue-jeff-troutman,              band: "50+", asOf: 2026, source: "Tommy Leech, Oct 2026" }
+  - { player: longue-vue-scott-troutman,             band: "50+", asOf: 2026, source: "Tommy Leech, Oct 2026" }
+
+# Searched on 14 Oct 2026 (three passes, incl. high-school and college sports
+# sites), nothing found, and no estimate from the clubs yet: Jackson Fricke,
+# Henry McCrady, Ben Washburn, Sam Miclot, Rob Ellsworth, Jim Usher, Andrew
+# Begg (the 2022 Fox Chapel HS senior is too young to be the 2013-15 player),
+# Randy Russell, Lou Astorino, Don Smith, Trey Kelly, Chris Rudolf, Patrick
+# Walsh, JP Walsh, Watson Barker, Joe Bertucci, Mike Gielarowski, Matt Fisch
+# (older brother of Pitt's Aidan Fisch, b. 2000), David Koi, and the
+# initials-only F. Fisch, P. Compeau, B. Sera, B. Weinbaum.

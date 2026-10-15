@@ -132,10 +132,28 @@ players:
   - { player: fox-chapel-hunter-stanchak,             born: "1994", approx: true, source: "Peters Township HS golf 2010 alongside Tommy Nettles; uncertain, same name only" }
   - { player: fox-chapel-jesse-coslov,                born: "1985", approx: true, source: "Shady Side Academy and GWU graduate, first job 2007; uncertain" }
 
+  # --- second pass, 14 Oct 2026: years inferred from school and college records
+  - { player: longue-vue-brendan-gramley,             born: "1994", approx: true, source: "Shady Side Academy; senior on the South Carolina golf roster 2015-16" }
+  - { player: longue-vue-charlie-troutman,            born: "2003", approx: true, source: "Shady Side Academy sophomore in fall 2018 (IPSL medalist)" }
+  - { player: longue-vue-aidan-oehrle,                born: "2003", approx: true, source: "Fox Chapel HS junior in fall 2019 (WPIAL 3A, T3)" }
+  - { player: longue-vue-eli-yofan,                   born: "2004", approx: true, source: "Fox Chapel HS junior in fall 2020" }
+  - { player: longue-vue-tanner-grzegorczyk,          born: "2000", approx: true, source: "Shaler graduate; Findlay golf, senior in 2023; uncertain by a year or two" }
+  - { player: longue-vue-jack-wymard,                 born: "2001", approx: true, source: "Pine-Richland golfer at the 2018 PIAA championship; class year not found, uncertain" }
+  - { player: longue-vue-kevin-koerbel,               born: "1990", approx: true, source: "Deer Lakes; Penn State Behrend golf 2009-11" }
+  - { player: longue-vue-ben-rathfon,                 born: "1983", approx: true, source: "Allegheny College class of 2005 (athletics hall of fame)" }
+  - { player: longue-vue-jonathan-pepe,               born: "1986", approx: true, source: "Serra Catholic; senior on the Marshall golf roster 2007-08" }
+  - { player: longue-vue-anthony-cordaro,             born: "1997", approx: true, source: "Pittsburgh entrant in 2014 U.S. Junior Amateur qualifying (under 19); uncertain by a year or two" }
+  - { player: field-club-frank-fuhrer-iv,             born: "1999", approx: true, source: "Shady Side Academy senior in fall 2017" }
+
 # Searched on 14 Oct 2026, nothing found: Jackson Fricke, Todd Berglund,
 # Ryan Banks, Henry McCrady, Ben Washburn, Sam Miclot, Jon Halpern,
 # Rob Ellsworth, Don Thomas, Mike Foster, Gus Schroeder, Jim Usher,
 # Dave Mengel, Andrew Begg (the 2022 Fox Chapel HS senior is too young to be
 # the 2013-15 player), Phil Beard, James Braham, Randy Russell, Lou Astorino,
 # Don Smith, Trey Kelly, Chris Rudolf, Patrick Walsh, Watson Barker,
-# TJ Cleveland.
+# TJ Cleveland. Second pass, same day, also nothing: Evan Ruhling, Derek Evans,
+# Mike Gielarowski, Matt Fisch, Mark Vernallis, Will Betts, Nick Gordon,
+# Stu Lotz, Joe Cordaro, Al Beeken, Joe Bertucci, JJ Bush Jr., Amani
+# D'Ambrosio, Andrew Hodge, Chris Osborne, Kevin Heher, Shawn Will, Jim
+# McBride, Jim Crawford, Mike Colville, Jeff and Scott Troutman, Dom Fazio,
+# Damon Claus, Will Maher, JP Walsh, Ben Smith (Fox Chapel).
